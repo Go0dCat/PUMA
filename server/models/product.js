@@ -17,6 +17,38 @@ const ProductSchema = new Schema({
   ProductNameThin: {
     type: String,
     required: false
+  },
+  Category: {
+    type: String,
+    required: [true, 'Category is required']
+  },
+  BottleTextShort: {
+    type: String,
+    required: false
+  },
+  Seal: {
+    type: String,
+    required: false
+  },
+  AlcoholPercentage: {
+    type: Number,
+    required: [true, 'AlcoholPercentage is required']
+  },
+  Volume: {
+    type: Number,
+    required: [true, 'Volume is required']
+  },
+  Price: {
+    type: Number,
+    required: [true, 'Price is required']
+  },
+  SubCategory: {
+    type: String,
+    required: [true, 'SubCategory is required']
+  },
+  Type: {
+    type: String,
+    required: [true, 'Type is required']
   }
 });
 
