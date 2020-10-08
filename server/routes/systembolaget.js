@@ -45,6 +45,8 @@ router.get('/systembolaget/:productid', function(req, res, next){
     console.log(response.data);
     //console.log(response.data.explanation);
 
+    
+
     //res.send(response.data;
   })
   .catch(error => {
