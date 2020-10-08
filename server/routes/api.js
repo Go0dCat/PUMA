@@ -6,5 +6,8 @@ const router = express.Router();
 
 //routing
 router.get('/test', function(req, res, next){
-  console.log('testing');
+  console.log('req to test/get');
+  res.send({test: 'yes'});
 });
+
+module.exports = router;
