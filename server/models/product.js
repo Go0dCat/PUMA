@@ -48,7 +48,7 @@ const ProductSchema = new Schema({
   },
   Type: {
     type: String,
-    required: [true, 'Type is required']
+    required: false
   }
 });
 
