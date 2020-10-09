@@ -1,21 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/* #8 för hur vi kan spara data för vilken knapp användaren trycker på i quizet*/
+/* #10 för hur vi kan skapa papperskorgen när vi vill slänga en dryck i mina drycker */
+
+import React, { useState } from "react";
+import Home from "./screens/home";
 
 export default function App() {
+  const [name, setName] = useState("sara");
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    /* Kanske inte använda SafeAreaView och padda istället så att
+        färgen når hela vägen upp. */
+    <Home />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
