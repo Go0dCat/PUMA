@@ -10,10 +10,8 @@ const Product = require('../models/product');
 //routing
 
 //gets all products from systembolaget
-router.get('/systembolaget', function(req, res, next){
+router.get('/systembolaget/all', function(req, res, next){
   console.log('req to systembolaget');
-
-
   //fix Authorization ,
   //headers: { Authorization: 'Bearer ' + token //the token is a variable which holds the token }
   //Ocp-Apim-Subscription-Key
@@ -25,22 +23,17 @@ router.get('/systembolaget', function(req, res, next){
     console.log('res from systembolaget');
     console.log(response.data);
     //console.log(response.data.explanation);
-
     //res.send(response.data;
   })
   .catch(error => {
     console.log(error);
   })
-
   res.send({systembolaget: 'yes'});
 });
 
-//search
-
-//TODO add '/systembolaget/search/:searchstring'
-router.get('/systembolaget/search', function(req, res, next){
+/* Request to add Products to db. Specify quantity for each category. */
+router.get('/systembolaget/fill/quantity/:quantity', function(req, res, next){
   console.log('req to systembolaget');
-
   var searchArray = [
       'Alkoholfritt',
       'Rött vin',
@@ -51,25 +44,25 @@ router.get('/systembolaget/search', function(req, res, next){
       'Mousserande vin',
       'Rosévin'
     ];
-
     var isDone = false;
-    //
-  searchArray.forEach((item) => {
-    axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + item, {
-      headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}})
-        .then(response => {
+    searchArray.forEach((item) => {
+      axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + item, {
+        headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}}
+        ).then(response => {
           console.log('res from systembolaget');
-          //console.log(response.data.Hits[0]);
-          //res.send(response.data.Hits[0]);
-          for(j = 0; j <10; j++) {
-            addProduct(response.data.Hits[j]);
+          quantity = req.params.quantity;
+          for(j = 0; j < quantity; j++) {
+            product = addProduct(response.data.Hits[j]);
+            if (product === undefined) {
+              quantity++;
+            }
           }
        //res.send(response.data);
       }).catch(error => {
         console.log(error);
       });
     });
-    //res.send({systembolaget: 'done'});
+    res.send({systembolaget: 'done'});
 });
 
 /* Request to add Products in SubCategory. Specify quantity. */
@@ -128,7 +121,7 @@ function addProduct(product) {
         SubCategory: product.SubCategory,
         Type: product.Type
       }).then(function(){
-      console.log(product.ProductId + ' added to db heeeey');
+      console.log(product.SubCategory + ' ' + product.ProductId + ' added to db heeeey');
       return Product;
       }).catch(error => {
         console.log(error);
@@ -136,7 +129,7 @@ function addProduct(product) {
         return null;
       });
     } else {
-      console.log('Product ' + product.ProductId + ' alreeeeeeady exists');
+      console.log(product.SubCategory + ' ' + product.ProductId + ' already exists');
       // TODO: Does not return properly
       return null;
     }
