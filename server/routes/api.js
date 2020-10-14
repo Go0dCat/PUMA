@@ -47,4 +47,13 @@ router.get('/category/:category/:number', function(req, res, next){
   }).catch(next);
 });
 
+//get all products within a subcategory and type
+router.get('/category/:category/type/:type', function(req, res, next){
+  console.log('req products by category');
+  Product.find({SubCategory: req.params.category, Type: req.params.type}).then(function(products){
+    console.log('res with category');
+    res.send(products);
+  }).catch(next);
+});
+
 module.exports = router;
