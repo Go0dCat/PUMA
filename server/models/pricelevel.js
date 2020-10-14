@@ -6,8 +6,8 @@ const PriceLevelSchema = new Schema({
     type:String,
     required: [true, 'Price level name is required']
   },
-  beverage: [{
-    name: {
+  limits: [{
+    beverage: {
       type: String,
       required: [true, 'Beverage name is required']
     },
