@@ -2,14 +2,17 @@
 /* #10 för hur vi kan skapa papperskorgen när vi vill slänga en dryck i mina drycker */
 
 import React, { useState } from "react";
-import Home from "./screens/home";
+//import AsyncStorage from "react-native"
+import Navigator from "./routes/homeStack";
 
 export default function App() {
-  const [name, setName] = useState("sara");
+
+  let answers = {
+    question: "",
+    answer: "",
+  }
 
   return (
-    /* Kanske inte använda SafeAreaView och padda istället så att
-        färgen når hela vägen upp. */
-    <Home />
+    <Navigator />
   );
 }
