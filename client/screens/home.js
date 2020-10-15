@@ -5,15 +5,22 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Button,
 } from "react-native";
+import { globalStyles } from "../styles/global";
 
 /*const pressHandler = (id) => {
     console.log(id);
   }*/
 
-export default function Home() {
+export default function Home({ navigation }) {
+  const pressHandler = () => {
+    // Lägger skräm Quiz1 på stacken.
+    navigation.push("Quiz1");
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={globalStyles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Mina drycker</Text>
       </View>
@@ -22,9 +29,10 @@ export default function Home() {
         <Text style={styles.bodyText}>
           Generera den ultimata drycken att köpa på ditt Systembolag.
         </Text>
-        <TouchableOpacity style={styles.startButton}>
+        <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
+
         <Text style={styles.footer}>Inget valt bolag</Text>
       </View>
     </SafeAreaView>
@@ -32,10 +40,6 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
   header: {
     height: 80,
     paddingTop: 38,
