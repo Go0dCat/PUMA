@@ -4,21 +4,23 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>Mina drycker</Text>
+      <Text style={styles.headerText}>Mina drycker</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    paddingTop: 38,
-    backgroundColor: "pink",
+    width: "100%",
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+
   },
-  title: {
+  headerText: {
     textAlign: "center",
-    color: "#fff",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
+    color: "#000"
   },
 });
