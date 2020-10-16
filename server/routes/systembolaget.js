@@ -32,7 +32,7 @@ router.get('/systembolaget/all', function(req, res, next){
 });
 
 /* Request to add Products to db. Specify quantity for each category. */
-router.get('/systembolaget/fill/quantity/:quantity', function(req, res, next){
+router.get('/systembolaget/fill/quantity/:quantity', function(req, res){
   console.log('req to systembolaget');
   var searchArray = [
       'Alkoholfritt',
@@ -52,9 +52,12 @@ router.get('/systembolaget/fill/quantity/:quantity', function(req, res, next){
           console.log('res from systembolaget');
           quantity = req.params.quantity;
           for(j = 0; j < quantity; j++) {
+            // TODO: Problems
             product = addProduct(response.data.Hits[j]);
             if (product === undefined) {
+              console.log('UNDEFINED');
               quantity++;
+              console.log('quantity: ' + quantity);
             }
           }
        //res.send(response.data);
@@ -68,22 +71,33 @@ router.get('/systembolaget/fill/quantity/:quantity', function(req, res, next){
 /* Request to add Products in SubCategory. Specify quantity. */
 router.get('/systembolaget/category/:category/quantity/:quantity', function(req, res){
   console.log('req to systembolaget');
-  axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + req.params.category, {
+  axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + req.params.category + '&AssortmentText=Fast sortiment', {
       headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}}
   ).then(response => {
     console.log('res from systembolaget');
     quantity = req.params.quantity;
-    for(i = 0; i < quantity; i++) {
-      product = addProduct(response.data.Hits[i]);
-      if (product === undefined) {
-        quantity++;
-      }
-    }
+    helpFunction(response.data.Hits, quantity);
   }).catch(error => {
     console.log(error);
   });
   res.send({Systembolaget: 'Done with adding ' + req.params.category + ' to db'}); 
 });
+
+/* Help function to add products. Calls on function addProducts(). */
+async function helpFunction(products, quantity) {
+  await addProducts(products, quantity);
+}
+
+/* Function to add products to the DB. Calls on function addProduct(). */
+async function addProducts(products, quantity) {
+  for (i = 0; i < quantity; i++) {
+    result = await addProduct(products[i]);
+    if (result === null) {
+      quantity++;
+      console.log('Quantity: ' + quantity);
+    }
+  }
+}
 
 /* Request to add Product with ProductId to DB */
 router.get('/systembolaget/product/:productid', function(req, res){
@@ -93,7 +107,7 @@ router.get('/systembolaget/product/:productid', function(req, res){
   ).then(response => {
     product = addProduct(response.data);
     // TODO: Specify message to user
-    if (product === undefined) {
+    if (product === 1) {
       res.send('Could not add ' + req.params.productid + ' to db');
     }
     res.send(product);
@@ -104,8 +118,9 @@ router.get('/systembolaget/product/:productid', function(req, res){
 });
 
 /* Function to add product to DB if it does not exist already. Returns Product if succeed, otherwise null. */
-function addProduct(product) {
-  Product.findOne({ProductId: product.ProductId}).then(function(exists) {
+async function addProduct(product) {
+  let value = undefined;
+  await Product.findOne({ProductId: product.ProductId}).then(function(exists) {
     if (exists === null) {
       Product.create({
         ProductId: product.ProductId,
@@ -121,19 +136,17 @@ function addProduct(product) {
         SubCategory: product.SubCategory,
         Type: product.Type
       }).then(function(){
-      console.log(product.SubCategory + ' ' + product.ProductId + ' added to db heeeey');
-      return Product;
+      console.log(product.SubCategory + ' ' + product.ProductId + ' added to DB');
       }).catch(error => {
-        console.log(error);
-        // TODO: Does not return properly
-        return null;
+        //console.log(error);
       });
     } else {
       console.log(product.SubCategory + ' ' + product.ProductId + ' already exists');
-      // TODO: Does not return properly
-      return null;
+      value = null;
     }
   });
+  console.log('Value: ' + value);
+  return value;
 }
 
 //adds product to db
