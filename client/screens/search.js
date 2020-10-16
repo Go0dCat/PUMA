@@ -1,0 +1,7 @@
+import React, { useState } from "react";
+import { Text } from "react-native";
+import { globalStyles } from "../styles/global";
+
+export default function Search() {
+  return <Text>Sök Systembolag</Text>;
+}
