@@ -1,5 +1,7 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, Button } from "react-navigation";
+import Header from "../components/header";
+import React from "react";
 import Home from "../screens/home";
 import ConfirmAge from "../screens/confirm-age";
 import MyBev from "../screens/my-bev";
@@ -17,6 +19,9 @@ const screens = {
   Home: {
     // Navigerar till denna enligt import ovan
     screen: Home,
+    navigationOptions: {
+      headerTitle: () => <Header />
+    }
   },
   ConfirmAge: {
     screen: ConfirmAge,
@@ -26,6 +31,9 @@ const screens = {
   },
   Quiz1: {
     screen: Quiz1,
+    navigationOptions: {
+      title: "Fråga 1",
+    }
   },
   Quiz2: {
     screen: Quiz2,
@@ -48,7 +56,11 @@ const screens = {
 };
 
 // HomeStack är vår stack med screens. Får automatiskt en header inkl tillbakaknappar osv med stackNavigator.
-const HomeStack = createStackNavigator(screens);
+const HomeStack = createStackNavigator(screens, {
+  defaultNavigationOptions: {
+    headerStyle: { height: 100 }
+  }
+});
 
 // returns a container with all information in the stack.
 export default createAppContainer(HomeStack);

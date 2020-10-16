@@ -7,12 +7,10 @@ import Navigator from "./routes/homeStack";
 
 export default function App() {
 
-  let answers = {
-    question: "",
-    answer: "",
-  }
-
   return (
+
     <Navigator />
+
+
   );
 }
