@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Button
+  Button,
+  Image
 } from "react-native";
 
 import { globalStyles } from "../styles/global";
@@ -21,12 +22,10 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Mina drycker</Text>
-      </View>
+    <View style={globalStyles.container}>
+
       <View style={styles.body}>
-        <Text style={styles.logga}>Dryckesakuten</Text>
+        <Image style={styles.img} source={require('../assets/Logga.png')} />
 
         <Text style={styles.bodyText}>
           Generera den ultimata drycken att köpa på ditt Systembolag.
@@ -38,7 +37,7 @@ export default function Home({ navigation }) {
 
         <Text style={styles.footer}>Inget valt bolag</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
     //justifyContent: "center",
     //alignItems: "center",
     padding: 20,
-    backgroundColor: "coral",
   },
   logga: {
     flex: 2,
@@ -67,13 +65,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     backgroundColor: "yellow",
   },
+  img: {
+    alignSelf: "center",
+  },
   bodyText: {
     flex: 1,
     textAlign: "center",
     fontSize: 16,
-    backgroundColor: "blue",
     paddingLeft: 50,
     paddingRight: 50,
+    marginTop: 20,
   },
   startButton: {
     flex: 1,
