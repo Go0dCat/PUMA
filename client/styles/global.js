@@ -39,6 +39,19 @@ export const images = {
     'aventyrliga-dora': require('../assets/aventyrliga-dora.png'),
     'flortiga-barney': require('../assets/flortiga-barney.png'),
 
+  },
+  partyPersons: {
+    'beratta-livshistoria': require('../assets/beratta-livshistoria.png'),
+    'finsmakaren': require('../assets/finsmakaren.png'), //bilden ska bytas ut
+    'dryckesspelfantasten': require('../assets/dryckesspelfantasten.png'),
+    'gar-inte-dit': require('../assets/gar-inte-dit.png'),
+    'startar-dansgolvet': require('../assets/startar-dansgolvet.png'),
+    'trubaduren': require('../assets/trubaduren.png'),
+  }, 
+  prices: {
+    'billigt': require('../assets/billigt.png'),
+    'mellan': require('../assets/mellan.png'),
+    'dyrt': require('../assets/dyrt.png'),
   }
 
 }
