@@ -12,7 +12,7 @@ export default function Quiz1({ navigation }) {
     { title: 'BBQ', key: '6' },
   ])
 
-  let quizAnswers = [];
+  //let quizAnswers = [];
   //const situation = navigation.getParam('title');
 
   return (
@@ -26,7 +26,7 @@ export default function Quiz1({ navigation }) {
         data={situations}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
-          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => quizAnswers.push(item), () => navigation.navigate('Quiz2', quizAnswers)}>
+          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz2', item)}>
             <Image source={images.situations[item.title]} />
           </TouchableOpacity>
         )}

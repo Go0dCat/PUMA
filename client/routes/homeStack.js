@@ -7,7 +7,7 @@ import Quiz1 from "../screens/quiz-1";
 import Quiz2 from "../screens/quiz-2";
 import Quiz3 from "../screens/quiz-3";
 import Quiz4 from "../screens/quiz-4";
-import QuizBev from "../screens/quiz-bev";
+import Categories from "../screens/categories";
 import Result from "../screens/result";
 import Search from "../screens/search";
 
@@ -36,8 +36,8 @@ const screens = {
   Quiz4: {
     screen: Quiz4,
   },
-  QuizBev: {
-    screen: QuizBev,
+  Categories: {
+    screen: Categories,
   },
   Result: {
     screen: Result,
