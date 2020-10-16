@@ -5,8 +5,9 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Button,
+  Button
 } from "react-native";
+
 import { globalStyles } from "../styles/global";
 
 /*const pressHandler = (id) => {
@@ -26,9 +27,11 @@ export default function Home({ navigation }) {
       </View>
       <View style={styles.body}>
         <Text style={styles.logga}>Dryckesakuten</Text>
+
         <Text style={styles.bodyText}>
           Generera den ultimata drycken att köpa på ditt Systembolag.
-        </Text>
+              </Text>
+
         <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
