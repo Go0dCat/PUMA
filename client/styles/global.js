@@ -30,5 +30,15 @@ export const images = {
     'party': require('../assets/party.png'),
     'dinner-romantic': require('../assets/dinner-romantic.png'),
     'BBQ': require('../assets/BBQ.png'),
+  },
+  characters: {
+    'snalla-puh': require('../assets/snalla-puh.png'),
+    'know-it-all-hermione': require('../assets/know-it-all-hermione.png'),
+    'festsugna-annie': require('../assets/festsugna-annie.png'),
+    'hungriga-gustaf': require('../assets/hungriga-gustaf.png'),
+    'aventyrliga-dora': require('../assets/aventyrliga-dora.png'),
+    'flortiga-barney': require('../assets/flortiga-barney.png'),
+
   }
+
 }
