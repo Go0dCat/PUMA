@@ -32,7 +32,7 @@ router.get('/systembolaget/fill/quantity/:quantity', function(req, res){
       'Rosévin'
     ];
     searchArray.forEach((item) => {
-      axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + item, {
+      axios.get('https://api-extern.systembolaget.se/product/v1/product/search?SubCategory=' + item + '&AssortmentText=Fast sortiment', {
         headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}}
         ).then(response => {
           console.log('res from systembolaget');
