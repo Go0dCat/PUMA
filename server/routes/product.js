@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-//require models here...
+// Required models
 const Product = require('../models/product');
 
 const productTypes = [
@@ -24,7 +24,7 @@ router.get('/product/all', function(req, res){
   ).then(response => {
     console.log('res from systembolaget');
     response.data.forEach((item) => {
-      if (productTypes.includes(item.SubCategory)) {
+      if (productTypes.includes(item.SubCategory) && item.Assortment === 'FS') {
         addProduct(item);
       }
     });
@@ -112,7 +112,8 @@ async function addProduct(product) {
         Volume: product.Volume,
         Price: product.Price,
         SubCategory: product.SubCategory,
-        Type: product.Type
+        Type: product.Type,
+        Assortment: product.Assortment
       }).then(function(){
       console.log(product.SubCategory + ' ' + product.ProductId + ' added to DB');
       }).catch(error => {
