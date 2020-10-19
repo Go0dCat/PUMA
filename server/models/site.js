@@ -33,8 +33,17 @@ const SiteSchema = new Schema({
   Name: {
     type: String,
     required: [true, 'Name is required']
-  }
-  // TODO: Add position? Other?
+  },
+  Position: [{
+      Long: {
+        type: Number,
+        required: [true, 'Position long is required']
+      },
+      Lat: {
+          type: Number,
+          required: [true, 'Position lat is required']
+      },
+  }]
 });
 
 const Site = mongoose.model('Site', SiteSchema);

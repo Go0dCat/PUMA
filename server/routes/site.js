@@ -6,8 +6,9 @@ const axios = require('axios');
 const Site = require('../models/site');
 
 // TODO: Fix answer
+// Fås alla Systembolaget?
 /* Request to add all Sites to DB */
-router.get('/site/fill', function(res){
+router.get('/site/all', function(req, res){
   console.log('req to systembolaget');
   axios.get('https://api-extern.systembolaget.se/site/v1/site/search?SiteType=0', {
     headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}}
@@ -38,7 +39,8 @@ function addSite(site) {
         City: site.City,
         County: site.County,
         OpeningHours: site.OpeningHours,
-        Name: site.Name
+        Name: site.Name,
+        Position: site.Position
       }).then(function(){
         console.log(site.Name + ', ' +  site.City + ' added to DB');
       }).catch(error => {
