@@ -1,6 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer, Button } from "react-navigation";
-import Header from "../components/header";
+import HomeHeader from "../components/homeHeader";
 import React from "react";
 import Home from "../screens/home";
 import ConfirmAge from "../screens/confirm-age";
@@ -19,8 +19,12 @@ const screens = {
   Home: {
     // Navigerar till denna enligt import ovan
     screen: Home,
+    /*navigationOptions: {
+      headerTitle: () => <HomeHeader />
+    }*/
     navigationOptions: {
-      headerTitle: () => <Header />
+      title: "Hem",
+      headerShown: false,
     }
   },
   ConfirmAge: {
@@ -28,6 +32,9 @@ const screens = {
   },
   MyBev: {
     screen: MyBev,
+    navigationOptions: {
+      title: "Mina drycker",
+    }
   },
   Quiz1: {
     screen: Quiz1,
@@ -37,21 +44,39 @@ const screens = {
   },
   Quiz2: {
     screen: Quiz2,
+    navigationOptions: {
+      title: "Fråga 2",
+    }
   },
   Quiz3: {
     screen: Quiz3,
+    navigationOptions: {
+      title: "Fråga 3",
+    }
   },
   Quiz4: {
     screen: Quiz4,
+    navigationOptions: {
+      title: "Fråga 4",
+    }
   },
   Categories: {
     screen: Categories,
+    navigationOptions: {
+      title: "Välj kategori",
+    }
   },
   Result: {
     screen: Result,
+    navigationOptions: {
+      title: "Resultat",
+    }
   },
   Search: {
     screen: Search,
+    navigationOptions: {
+      title: "Välj bolag",
+    }
   },
 };
 
