@@ -6,6 +6,7 @@ const axios = require('axios');
 const Site = require('../models/site');
 
 // TODO: Fix answer
+// Fås alla Systembolaget? Kollas alla bolag?
 /* Request to add all Sites to DB */
 router.get('/site/all', function(req, res){
   console.log('req to systembolaget');
