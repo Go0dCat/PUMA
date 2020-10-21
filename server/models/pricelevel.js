@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const PriceLevelSchema = new Schema({
   name: {
-    type:String,
+    type: String,
     required: [true, 'Price level name is required']
   },
   limits: [{

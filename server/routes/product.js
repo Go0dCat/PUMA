@@ -24,7 +24,7 @@ router.get('/product/all', function(req, res){
   ).then(response => {
     console.log('res from systembolaget');
     response.data.forEach((item) => {
-      if (productTypes.includes(item.SubCategory) && item.Assortment === 'FS') {
+      if (productTypes.includes(item.SubCategory) && (item.Assortment === 'FS' || item.Assortment === 'FSÖ')) {
         addProduct(item);
       }
     });

@@ -1,36 +1,42 @@
 const express = require('express');
 const router = express.Router();
 
-//require models here...
+// Required models
 const Product = require('../models/product');
+const Site = require('../models/site');
 const PriceLevel = require('../models/pricelevel');
 
+/* Gets all sites */
+router.get('/client/sites', function(req, res, next) {
+  console.log('Request: All sites');
+  Site.find().then(function(sites){
+    res.send(sites);
+  }).catch(next);
+});
 
-//routing
-//gets all products
-router.get('/products', function(req, res, next){
-  console.log('req all products');
+/* Gets all products */
+router.get('/client/products', function(req, res, next){
+  console.log('Request: All products');
   Product.find().then(function(products){
     res.send(products);
   }).catch(next);
 });
 
-//gets product by subcategory
-router.get('/category/:category', function(req, res, next){
-  console.log('req products by category');
+/* Gets all products by SubCategory */
+router.get('/client/category/:category', function(req, res, next){
+  console.log('Request: All products Subcategory ' + req.params.category);
   Product.find({SubCategory: req.params.category}).then(function(products){
-    console.log('res with category');
     res.send(products);
   }).catch(next);
 });
 
-router.get('/category/:category/number/:number', function(req, res, next){
-  console.log('req products by category');
+/* Gets x number of products by SubCategory */
+router.get('/client/category/:category/quantity/:quantity', function(req, res, next){
+  console.log('Request: ' + req.params.quantity + ' products Subcategory ' + req.params.category);
   Product.find({SubCategory: req.params.category}).then(function(products){
     var result = [];
     var numbers = [];
-
-    for (let i = 0; i < Math.min(req.params.number, products.length); i++) {
+    for (let i = 0; i < Math.min(req.params.quantity, products.length); i++) {
       let foundX = false;
       do {
         let x = Math.floor(Math.random() * products.length);
@@ -38,17 +44,16 @@ router.get('/category/:category/number/:number', function(req, res, next){
           result.push(products[x]);
           numbers.push(x);
           foundX = true;
-          //console.log('found and added' + x);
         }
-        //console.log('found ' + x);
       } while(!foundX);
     }
-    console.log('res with category by x numbers');
     res.send(result);
   }).catch(next);
 });
 
-router.get('/category/:category/number/:number/pricelevel/:pricelevel', function(req, res, next){
+// TODO
+/* */
+router.get('/client/category/:category/number/:number/pricelevel/:pricelevel', function(req, res, next){
   console.log('req products by category and price');
 
   Product.find({SubCategory: req.params.category}).then(function(products){
@@ -109,11 +114,32 @@ router.get('/category/:category/number/:number/pricelevel/:pricelevel', function
 
 });
 
-//get all products within a subcategory and type
-router.get('/category/:category/type/:type', function(req, res, next){
-  console.log('req products by category');
+/* Gets non-alcoholic products within category */
+router.get('/client/non-alcoholic/:category', function(req, res, next){
+  console.log('Request');
+  category = req.params.category;
+  if (category == 'Cider' || category == 'Blanddrycker') {
+    category = 'Cider & Blanddryck';
+  }
+  else if (category == 'Rött vin') {
+    category = 'Rött';
+  } else if (category == 'Vitt vin') {
+    category = 'Vitt';
+  } else if (category == 'Rosévin') {
+    category = 'Rosé';
+  } else if (category == 'Mousserande vin') {
+    category = 'Mousserande';
+  }
+  Product.find({SubCategory: 'Alkoholfritt', Type: category}).then(function(products){
+    res.send(products);
+  }).catch(next);
+});
+
+// TODO: Delete?
+/* Get all products within a SubCategory and Type */
+router.get('/client/category/:category/type/:type', function(req, res, next){
+  console.log('Request');
   Product.find({SubCategory: req.params.category, Type: req.params.type}).then(function(products){
-    console.log('res with category');
     res.send(products);
   }).catch(next);
 });
