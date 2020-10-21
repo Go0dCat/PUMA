@@ -36,3 +36,5 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+client/.expo/packager-info.json
+client/.expo/*
