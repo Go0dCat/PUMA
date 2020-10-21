@@ -13,7 +13,7 @@ export default function Result({ navigation }) {
     <View>
       <Text>Din genererade dryck</Text>
       <TouchableOpacity onPress={pressHandler}>
-        Tillbaka till start.
+        <Text>Tillbaka till start.</Text>
       </TouchableOpacity>
     </View>
   );
