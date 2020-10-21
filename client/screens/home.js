@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  Button,
+  Image
 } from "react-native";
 import { globalStyles } from "../styles/global";
-
-/*const pressHandler = (id) => {
-    console.log(id);
-  }*/
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
@@ -20,30 +15,51 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Mina drycker</Text>
-      </View>
+    <View style={globalStyles.container}>
+
       <View style={styles.body}>
-        <Text style={styles.logga}>Dryckesakuten</Text>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.push("MyBev")}>
+            <Text style={styles.headerText}>Mina drycker</Text>
+          </TouchableOpacity>
+        </View>
+
+        <Image style={styles.img} source={require('../assets/Logga.png')} />
+
         <Text style={styles.bodyText}>
           Generera den ultimata drycken att köpa på ditt Systembolag.
         </Text>
+
         <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
-
-        <Text style={styles.footer}>Inget valt bolag</Text>
       </View>
-    </SafeAreaView>
+
+      <View style={styles.footer}>
+        <View style={styles.footerLeft}>
+          <Image style={styles.footerImg} source={require('../assets/icon.png')} />
+          <Text style={styles.footerText}>Inget valt bolag</Text>
+        </View>
+        <TouchableOpacity style={styles.footerBtn} onPress={() => navigation.push("Search")}>
+          <Text style={styles.footerBtnText}>Välj bolag</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    paddingTop: 38,
-    backgroundColor: "pink",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    height: 100,
+  },
+  headerText: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#000",
+    marginVertical: 40,
   },
   title: {
     textAlign: "center",
@@ -53,10 +69,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    //justifyContent: "center",
-    //alignItems: "center",
     padding: 20,
-    backgroundColor: "coral",
   },
   logga: {
     flex: 2,
@@ -64,27 +77,59 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     backgroundColor: "yellow",
   },
+  img: {
+    alignSelf: "center",
+  },
   bodyText: {
     flex: 1,
     textAlign: "center",
     fontSize: 16,
-    backgroundColor: "blue",
     paddingLeft: 50,
     paddingRight: 50,
+    marginTop: 20,
   },
   startButton: {
-    flex: 1,
+    backgroundColor: "#36575C",
+    borderRadius: 30,
+    margin: 20,
+    marginBottom: "10%",
   },
   buttonText: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
     padding: 15,
-    backgroundColor: "#36575C",
   },
   footer: {
-    flex: 1,
+    height: "10%",
     fontWeight: "bold",
-    backgroundColor: "green",
+    backgroundColor: "#ddd",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  footerLeft: {
+    flexDirection: "row",
+  },
+  footerImg: {
+    width: 24,
+    height: 24,
+  },
+  footerText: {
+    fontSize: 16,
+    color: "#000",
+  },
+  footerBtn: {
+    backgroundColor: "#F2A478",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 40,
+    height: 40,
+    width: 100,
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+  footerBtnText: {
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

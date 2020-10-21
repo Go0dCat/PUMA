@@ -24,9 +24,10 @@ db.once('open', () => console.log('Connected to db'));
 //fixes cors
 app.use(cors());
 app.use(express.json());
-app.use('/api', require('../routes/api'));
-app.use('/api', require('../routes/systembolaget'));
+app.use('/api', require('../routes/client'));
+app.use('/api', require('../routes/product'));
 app.use('/api', require('../routes/adjustpricelevel'));
+app.use('/api', require('../routes/site'));
 
 //error handling from db
 app.use(function(err, req, res, next){
