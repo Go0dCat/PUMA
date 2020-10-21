@@ -3,5 +3,5 @@ import { Text } from "react-native";
 import { globalStyles } from "../styles/global";
 
 export default function MyBev() {
-  return <Text>Myna drycker</Text>;
+  return <Text>Mina drycker</Text>;
 }

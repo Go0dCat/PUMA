@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Button } from "react-native";
 //import CheckBox from '@react-native-community/checkbox';
 //import { CheckBox } from 'react-native-elements';
 import { globalStyles } from "../styles/global";
-import MultipleChoice from 'react-native-multiple-choice'
+//import MultipleChoice from 'react-native-multiple-choice'
 
 export default function Categories({ navigation }) {
   const [categories, setCategories] = useState([
@@ -22,7 +22,9 @@ export default function Categories({ navigation }) {
       <Text>{navigation.getParam('key')}</Text>
       <Text>Fråga 5 - Vad föredrar du?</Text>
 
-    
+      <TouchableOpacity onPress={() => navigation.navigate('Result')}>
+        <Text>Till resultat</Text>
+      </TouchableOpacity>
 
       {/*<CheckBox value = {false}>
       </CheckBox>*/}
