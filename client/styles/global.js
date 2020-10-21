@@ -18,6 +18,21 @@ export const globalStyles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 5
 
+  },
+  categorieContainer: {
+    marginTop: 20,
+    height: 10,
+    width: "90%",
+    //backgroundColor: 'coral',
+
+  },
+  categorieOptions: {
+    justifyContent: 'center', 
+    alignItems: "center",
+    marginVertical: 5,
+    borderRadius: 12,  
+    backgroundColor: 'pink',
+
   }
 });
 
