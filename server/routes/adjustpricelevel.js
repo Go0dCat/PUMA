@@ -23,6 +23,57 @@ router.post('/pricelevel', function(req, res, next){
   //res.send({type: 'post'});
 });
 
+//adds a dummy pricelevel for use
+//postman post req: "http://localhost:8081/api/pricelevel/create"
+router.post('/pricelevel/create', function(req, res, next){
+  console.log('dummy post req to pricelevel');
+
+  PriceLevel.create({
+    name: "low",
+    limits: [
+       {
+           beverage: "Rött vin",
+           lowerlimit: 0,
+           upperlimit: 150
+       },
+       {
+           beverage: "Vitt vin",
+           lowerlimit: 0,
+           upperlimit: 150
+       },
+       {
+           beverage: "Öl",
+           lowerlimit: 0,
+           upperlimit: 35
+       },
+       {
+           beverage: "Cider",
+           lowerlimit: 0,
+           upperlimit: 35
+       },
+       {
+           beverage: "Blanddrycker",
+           lowerlimit: 0,
+           upperlimit: 35
+       },
+       {
+           beverage: "Rosévin",
+           lowerlimit: 0,
+           upperlimit: 130
+       },
+       {
+           beverage: "Mousserande vin",
+           lowerlimit: 0,
+           upperlimit: 130
+       }
+     ]
+  })
+  .then(function(pricelevel){
+    res.send(pricelevel);
+  }).catch(next);
+  //res.send({type: 'post'});
+});
+
 //replaces all entries in limits: []
 router.put('/pricelevel/:levelname', function(req, res, next){
   console.log('put req to pricelevel/:levelname');

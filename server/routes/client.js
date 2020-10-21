@@ -51,17 +51,17 @@ router.get('/client/category/:category/quantity/:quantity', function(req, res, n
   }).catch(next);
 });
 
-// TODO
+// TODO number --> quantity
 /* */
-router.get('/client/category/:category/number/:number/pricelevel/:pricelevel', function(req, res, next){
-  console.log('req products by category and price');
+router.get('/client/category/:category/quantity/:quantity/pricelevel/:pricelevel', function(req, res, next){
+  console.log('Request: ' + req.params.quantity + ' products in Subcategory ' + req.params.category + ' by ' + req.params.pricelevel + ' pricelevel');
 
   Product.find({SubCategory: req.params.category}).then(function(products){
     let result = [];
     let numbers = [];
-    console.log('got them products by SubCategory');
+    //console.log('got them products by SubCategory');
 
-    for (let i = 0; i < Math.min(req.params.number, products.length); i++) {
+    for (let i = 0; i < Math.min(req.params.quantity, products.length); i++) {
       let foundX = false;
       do {
         let x = Math.floor(Math.random() * products.length);
@@ -70,25 +70,26 @@ router.get('/client/category/:category/number/:number/pricelevel/:pricelevel', f
 
           //add check for price here
           PriceLevel.findOne({name: req.params.pricelevel}).then(function(pricelevel){
-            console.log('looking for prices');
+            //console.log('looking for prices');
 
+            //TODO check what happens if price doesnt exist
             //loop through pricelevel list
             for(let j = 0; j < pricelevel.limits.length; j++) {
-              console.log('looping through list entry ' + i + ' '+ j);
+              //console.log('looping through list entry ' + i + ' '+ j);
               if(pricelevel.limits[j].beverage === products[x].SubCategory) {
-                console.log('found matching bev + subcat');
+                //console.log('found matching bev + subcat');
                 //get product kr/liter
                 let compPrice = products[x].Price / products[x].Volume;
                 if(pricelevel.limits[j].upperlimit >= compPrice && pricelevel.limits[j].lowerlimit <= compPrice) {
-                  console.log('entered comparison');
+                  //console.log('entered comparison');
 
                   //console.log('result is' + result);
                   result.push(products[x]);
                 }
               }
-              console.log('printing i: ' + i +' and ' + j);
-              if(i >= Math.min(req.params.number, products.length) - 1 && j >=pricelevel.limits.length -1) {
-                console.log('i got here');
+              //console.log('printing i: ' + i +' and ' + j);
+              if(i >= Math.min(req.params.quantity, products.length) - 1 && j >= pricelevel.limits.length -1) {
+                //console.log('i got here');
                 res.send(result);
               }
             }
