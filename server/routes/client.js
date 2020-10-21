@@ -52,7 +52,20 @@ router.get('/client/category/:category/quantity/:quantity', function(req, res, n
 });
 
 // TODO number --> quantity
-/* */
+
+
+/* Returns a maximum of x quantity of products by SubCategory and PriceLevel
+ *    Returns less than requested quantity if there are fewer products that match pricelevel
+ *
+ * How to use this:
+ *   Use postman for this:
+ *      Fill up pricelevel with get req: "http://localhost:8081/api/pricelevel/create"
+ *      Fill up products  with get req: "http://localhost:8081/api/product/all"
+ *   Then you can make url req
+ *      For instance: "http://localhost:8081/api/client/category/Rött vin/quantity/10/pricelevel/low"
+ *
+ * TODO SJ: Note that this function can't handle pricelevels not existing currently
+ */
 router.get('/client/category/:category/quantity/:quantity/pricelevel/:pricelevel', function(req, res, next){
   console.log('Request: ' + req.params.quantity + ' products in Subcategory ' + req.params.category + ' by ' + req.params.pricelevel + ' pricelevel');
 

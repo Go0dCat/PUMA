@@ -24,10 +24,11 @@ router.post('/pricelevel', function(req, res, next){
 });
 
 //adds a dummy pricelevel for use
-//postman post req: "http://localhost:8081/api/pricelevel/create"
-router.post('/pricelevel/create', function(req, res, next){
+//postman get req: "http://localhost:8081/api/pricelevel/create"
+router.get('/pricelevel/create', function(req, res, next){
   console.log('dummy post req to pricelevel');
 
+  //NOTE: you can change values here :D
   PriceLevel.create({
     name: "low",
     limits: [
