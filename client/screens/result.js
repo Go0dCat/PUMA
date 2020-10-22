@@ -5,10 +5,9 @@ import { globalStyles } from "../styles/global";
 
 export default function Result({ navigation }) {
 
-  // TODO: Fixa så att 'responseJson[0].ProductId' syns i vyn
-  
+  // TODO: Fixa så att 'responseJson[0].ProductNameBold' syns i vyn
 
- /* function testFunction() {
+  function testFunction() {
 
     const [value, setValue] = useState(null);
 
@@ -18,7 +17,7 @@ export default function Result({ navigation }) {
           .then((response) => response.json())
           .then((responseJson) => {
             console.log('Response: ' + responseJson[0].ProductId);
-            setValue({value: responseJson[0].ProductId});
+            setValue({value: responseJson[0].ProductNameBold});
           })
           .catch((error) => {
             console.log(error);
@@ -32,9 +31,24 @@ export default function Result({ navigation }) {
       return 'Loading...';
     }
     return value;
-  }*/
-  
+  }
 
+  function fetchProduct() {
+    console.log('fetch');
+        fetch('http://172.23.130.126:8081/api/client/category/Cider')
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log('Response: ' + responseJson[0].ProductNameBold);
+            return responseJson[0].ProductNameBold;
+          })
+          .catch((error) => {
+            console.log(error);
+            //return 'hej';
+          });
+        console.log('utanför');
+        //return 'test';
+  }
+  
   const pressHandler = () => {
     // Kolla om det finns en "pop all" för att navigera till Home.
     navigation.goBack();
@@ -45,7 +59,7 @@ export default function Result({ navigation }) {
 
       <View style={styles.firstContainer}>
         <View style={styles.productContainer}>
-          <Text style={styles.productBold}>Ahlafors</Text>
+          <Text style={styles.productBold}>> {fetchProduct()}</Text>
           <Text style={styles.productThin}>Peach Passion</Text>
         </View>
         <View style={styles.priceContainer}>
