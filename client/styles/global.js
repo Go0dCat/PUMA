@@ -12,19 +12,15 @@ export const globalStyles = StyleSheet.create({
   },
   header: {},
   quizAnswers: {
-
   },
   quizAnswer: {
     marginHorizontal: 5,
     marginVertical: 5
-
   },
   categorieContainer: {
     marginTop: 20,
     height: 10,
     width: "90%",
-    //backgroundColor: 'coral',
-
   },
   categorieOptions: {
     justifyContent: 'center', 
@@ -32,7 +28,18 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 5,
     borderRadius: 12,  
     backgroundColor: 'pink',
-
+  },
+  startButton: { // Ta bort denna från home.js
+    backgroundColor: "#36575C",
+    borderRadius: 30,
+    margin: 20,
+    marginBottom: "10%",
+  },
+  buttonText: { // Ta bort denna från home.js
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    padding: 15,
   }
 });
 
