@@ -13,12 +13,15 @@ export default function Quiz2({ navigation }) {
     { title: 'flortiga-barney', key: '5' },
   ])
 
+  //let answers = navigation.getParam('answers')
+  console.log("I Quiz 2" + JSON.stringify(navigation.getParam('answerKey')))
+
   return (
 
 
     <View style={globalStyles.quizContainer}>
       <Text>{navigation.getParam('title')}</Text>
-      <Text>{navigation.getParam('key')}</Text>
+
       <Text>Fråga 2 - Vilken karaktär är mest du?</Text>
 
       <FlatList
