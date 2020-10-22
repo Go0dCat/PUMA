@@ -13,7 +13,7 @@ export default function Quiz4({ navigation }) {
     <View style={globalStyles.quizContainer}>
       <Text>{navigation.getParam('title')}</Text>
       <Text>{navigation.getParam('key')}</Text>
-      <Text>Fråga 4 - Vad är viktigast för dig?</Text>
+      <Text style={globalStyles.quizText}>Vad är viktigast för dig?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
@@ -25,6 +25,10 @@ export default function Quiz4({ navigation }) {
           </TouchableOpacity>
         )}
       />
+
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_4.png')}/>
+      </View>
 
     </View>
   );

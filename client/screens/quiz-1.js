@@ -17,7 +17,7 @@ export default function Quiz1({ navigation }) {
 
   return (
     <View style={globalStyles.quizContainer}>
-      <Text>Fråga 1 - Vad bjuder kvällen på?</Text>
+      <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
@@ -31,7 +31,9 @@ export default function Quiz1({ navigation }) {
           </TouchableOpacity>
         )}
       />
-
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_1.png')}/>
+      </View>
 
     </View>
   );

@@ -29,16 +29,25 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 12,  
     backgroundColor: 'pink',
   },
-  startButton: { // Ta bort denna från home.js
+  startButton: { 
     backgroundColor: "#36575C",
     borderRadius: 30,
     margin: 20,
     marginBottom: "10%",
   },
-  buttonText: { // Ta bort denna från home.js
+  buttonText: { 
     color: "white",
     fontSize: 16,
     textAlign: "center",
+    padding: 15,
+  },
+  quizFooter: { 
+    height: "10%", //ev uppdatera denna till typ 15% om den ska passa större skärm 
+    justifyContent: 'center', 
+  },
+  quizText: {
+    fontSize: 16,
+    fontWeight: "bold", 
     padding: 15,
   }
 });
