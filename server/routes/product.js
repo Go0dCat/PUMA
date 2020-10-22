@@ -49,6 +49,7 @@ router.get('/product/id/:productid', function(req, res){
 });
 
 /* Request to add Products to db. Specify quantity for each category. */
+//TODO naming??
 router.get('/product/fill/:quantity', function(req, res){
   console.log('req to systembolaget');
   productTypes.forEach((item) => {
@@ -76,7 +77,7 @@ router.get('/product/category/:category/quantity/:quantity', function(req, res){
   }).catch(error => {
     console.log(error);
   });
-  res.send({Systembolaget: 'Done with adding ' + req.params.category + ' to db'}); 
+  res.send({Systembolaget: 'Done with adding ' + req.params.category + ' to db'});
 });
 
 /* Help function to add products. Calls on function addProducts(). */
