@@ -59,7 +59,7 @@ export default function Result({ navigation }) {
 
       <View style={styles.firstContainer}>
         <View style={styles.productContainer}>
-          <Text style={styles.productBold}>> {fetchProduct()}</Text>
+          <Text style={styles.productBold}>Produkt: {fetchProduct()}</Text>
           <Text style={styles.productThin}>Peach Passion</Text>
         </View>
         <View style={styles.priceContainer}>
