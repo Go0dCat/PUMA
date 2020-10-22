@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { globalStyles } from "../styles/global";
+import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 
 export default function Result({ navigation }) {
 
-  // TODO: Fixa så att 'responseJson[0].ProductNameBold' syns i vyn
+  console.log('-------Start------');
 
-  function testFunction() {
+  var product = 'Default';
+  var status = false;
+  
+  // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
-    const [value, setValue] = useState(null);
-
-    useEffect(() => {
-      console.log('fetch');
-        fetch('http://172.23.130.126:8081/api/client/category/Öl')
-          .then((response) => response.json())
-          .then((responseJson) => {
-            console.log('Response: ' + responseJson[0].ProductId);
-            setValue({value: responseJson[0].ProductNameBold});
-          })
-          .catch((error) => {
-            console.log(error);
-            //return 'hej';
-          });
-        console.log('utanför');
-        //return 'test';
-    });
-
-    if (value === null) {
-      return 'Loading...';
-    }
-    return value;
-  }
+  useEffect(() => {
+    console.log('useEffect()');
+    async function asyncFunction() {
+      try {
+        let response = await fetch('http://192.168.1.223:8081/api/client/category/Cider');
+        let json = await response.json();
+        console.log('Value 1: ' + json[0].ProductNameBold);
+        //return json[0].ProductNameBold;
+        product.setValue(json[0].ProductNameBold);
+        console.log('Value 2: ' + json[0].ProductNameBold);
+        //product = json[0].ProductNameBold;
+        status = true;
+      } catch (error) {
+        //console.log(error);
+        return 'error';
+      }
+    };
+    asyncFunction();
+  }, [])
 
   function fetchProduct() {
     console.log('fetch');
@@ -39,7 +37,9 @@ export default function Result({ navigation }) {
           .then((response) => response.json())
           .then((responseJson) => {
             console.log('Response: ' + responseJson[0].ProductNameBold);
-            return responseJson[0].ProductNameBold;
+            //product.setValue({product: responseJson[0].ProductNameBold});
+            product = responseJson[0].ProductNameBold;
+            //return responseJson[0].ProductNameBold;
           })
           .catch((error) => {
             console.log(error);
@@ -54,42 +54,57 @@ export default function Result({ navigation }) {
     navigation.goBack();
   };
 
-  return (
-    <View style={styles.viewContainer}>
+  //if (status) {
+    return (
+      <View style={styles.outerContainer}>
+        
+        <View style={styles.innerContainer}>
+          <View style={styles.productPriceContainer}>
+            <View style={styles.productContainer}>
+              <Text style={styles.productBold}>{product}</Text>
+              <Text style={styles.productThin}>Peach Passion</Text>
+            </View>
+            <View style={styles.priceContainer}>
+              <Text style={styles.price}>24:18</Text>
+              <Text style={styles.volume}>330 ml</Text>
+            </View>
+          </View>
 
-      <View style={styles.firstContainer}>
-        <View style={styles.productContainer}>
-          <Text style={styles.productBold}>Produkt: {fetchProduct()}</Text>
-          <Text style={styles.productThin}>Peach Passion</Text>
+          <View style={styles.attributeContainer}>
+            <Text style={styles.bold}>Kategori</Text>
+            <Text>Cider</Text>
+          </View>
+
+          <View style={styles.attributeContainer}>
+            <Text style={styles.bold}>Alkoholhalt</Text>
+            <Text>4,5 %</Text>
+          </View>
         </View>
-        <View style={styles.priceContainer}>
-          <Text style={styles.price}>24:18</Text>
-          <Text style={styles.volume}>330 ml</Text>
+
+        <Divider style={styles.divider}></Divider>
+
+        <View style={styles.innerContainer}>
+          <Text>I lager hos:</Text>
+          <Text style={styles.bold}>Rådhusesplanaden</Text>
+          <Text>Rådhusesplanaden 6E, Umeå</Text>
+          <Text>Öppet idag 10.00 - 19.00</Text>
         </View>
+          
       </View>
-
-      <View style={styles.attributeContainer}>
-        <Text style={styles.bold}>Kategori</Text>
-        <Text>Cider</Text>
-      </View>
-
-      <View style={styles.attributeContainer}>
-        <Text style={styles.bold}>Alkoholhalt</Text>
-        <Text>4,5 %</Text>
-      </View>
-         
-    </View>
-  );
-}
+    );
+  }
+//}
 
 const styles = StyleSheet.create ({
 
-  viewContainer: {
+  outerContainer: {
     flex: 1,
-    padding: 20,
     backgroundColor: 'white',
   },
-  firstContainer: {
+  innerContainer: {
+    padding: 20,
+  },
+  productPriceContainer: {
     flexDirection: 'row',
   },
   productContainer: {
@@ -121,5 +136,43 @@ const styles = StyleSheet.create ({
   bold: {
     fontWeight: 'bold',
   },
-  
+  divider: {
+    width: '100%',
+    marginTop: 20,
+    marginEnd: 20,
+  }
+
 })
+
+
+/*
+function testFunction() {
+
+    //const [value, setValue] = useState(null);
+
+    useEffect(() => {
+      console.log('fetch');
+        fetch('http://192.168.1.223:8081/api/client/category/Öl')
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log('Response: ' + responseJson[0].ProductId);
+            //value = responseJson[0].ProductNameBold;
+            console.log('Value 1: ' + value);
+            value.setValue(responseJson[0].ProductNameBold);
+            console.log('Value 2: ' + value);
+          })
+          .catch((error) => {
+            console.log(error);
+            //return 'hej';
+          });
+        console.log('utanför');
+        //return 'test';
+    });
+
+    if (value === null) {
+      return 'Loading...';
+    }
+    console.log('Value: ' + value);
+    return value;
+  }
+  */
