@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { globalStyles } from '../styles/global'
 
 export default function Result({ navigation }) {
+
+  const pressHandlerStart = () => {
+    // Lägger skräm Quiz1 på stacken.
+    navigation.popToTop();
+  };
 
   console.log('-------Start------');
 
   var product = 'Default';
   var status = false;
-  
+
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
@@ -34,69 +40,75 @@ export default function Result({ navigation }) {
 
   function fetchProduct() {
     console.log('fetch');
-        fetch('http://172.23.130.126:8081/api/client/category/Cider')
-          .then((response) => response.json())
-          .then((responseJson) => {
-            console.log('Response: ' + responseJson[0].ProductNameBold);
-            //product.setValue({product: responseJson[0].ProductNameBold});
-            product = responseJson[0].ProductNameBold;
-            //return responseJson[0].ProductNameBold;
-          })
-          .catch((error) => {
-            console.log(error);
-            //return 'hej';
-          });
-        console.log('utanför');
-        //return 'test';
+    fetch('http://172.23.130.126:8081/api/client/category/Cider')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log('Response: ' + responseJson[0].ProductNameBold);
+        //product.setValue({product: responseJson[0].ProductNameBold});
+        product = responseJson[0].ProductNameBold;
+        //return responseJson[0].ProductNameBold;
+      })
+      .catch((error) => {
+        console.log(error);
+        //return 'hej';
+      });
+    console.log('utanför');
+    //return 'test';
   }
-  
+
   const pressHandler = () => {
     // Kolla om det finns en "pop all" för att navigera till Home.
     navigation.goBack();
   };
 
   //if (status) {
-    return (
-      <View style={styles.outerContainer}>
-        
-        <View style={styles.innerContainer}>
-          <View style={styles.productPriceContainer}>
-            <View style={styles.productContainer}>
-              <Text style={styles.productBold}>{product}</Text>
-              <Text style={styles.productThin}>Peach Passion</Text>
-            </View>
-            <View style={styles.priceContainer}>
-              <Text style={styles.price}>24:18</Text>
-              <Text style={styles.volume}>330 ml</Text>
-            </View>
-          </View>
+  return (
+    <View style={styles.outerContainer}>
 
-          <View style={styles.attributeContainer}>
-            <Text style={styles.bold}>Kategori</Text>
-            <Text>Cider</Text>
+      <View style={styles.innerContainer}>
+        <View style={styles.productPriceContainer}>
+          <View style={styles.productContainer}>
+            <Text style={styles.productBold}>{product}</Text>
+            <Text style={styles.productThin}>Peach Passion</Text>
           </View>
-
-          <View style={styles.attributeContainer}>
-            <Text style={styles.bold}>Alkoholhalt</Text>
-            <Text>4,5 %</Text>
+          <View style={styles.priceContainer}>
+            <Text style={styles.price}>24:18</Text>
+            <Text style={styles.volume}>330 ml</Text>
           </View>
         </View>
 
-        <Divider style={styles.divider}></Divider>
-
-        <View style={styles.innerContainer}>
-          <Text>I lager hos:</Text>
-          <Text style={styles.bold}>Rådhusesplanaden</Text>
-          <Text>Rådhusesplanaden 6E, Umeå</Text>
-          <Text>Öppet idag 10.00 - 19.00</Text>
+        <View style={styles.attributeContainer}>
+          <Text style={styles.bold}>Kategori</Text>
+          <Text>Cider</Text>
         </View>
-          
+
+        <View style={styles.attributeContainer}>
+          <Text style={styles.bold}>Alkoholhalt</Text>
+          <Text>4,5 %</Text>
+        </View>
       </View>
-    );
-  }
+
+      <Divider style={styles.divider}></Divider>
+
+      <View style={styles.innerContainer}>
+        <Text>I lager hos:</Text>
+        <Text style={styles.bold}>Rådhusesplanaden</Text>
+        <Text>Rådhusesplanaden 6E, Umeå</Text>
+        <Text>Öppet idag 10.00 - 19.00</Text>
+      </View>
+
+      <Divider style={styles.divider}></Divider>
+
+      <TouchableOpacity style={globalStyles.startButton} onPress={pressHandlerStart}>
+        <Text style={globalStyles.buttonText}>Börja om</Text>
+      </TouchableOpacity>
+
+    </View>
+  );
+}
 //}
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
 
   outerContainer: {
     flex: 1,
