@@ -63,6 +63,7 @@ export default function Categories({ navigation }) {
     return (
       <ListItem
         onPress={() => onPress(item)}
+        key={item.key}
         style={[item.selected ? styles.selected : styles.normal]}>
         <View>
           <Text>{item.title}</Text>
@@ -83,9 +84,10 @@ export default function Categories({ navigation }) {
   };
 
   return (
-    <View style={globalStyles.quizContainer}>
+    <View style={globalStyles.categorieContainer}>
 
       <Text style={globalStyles.quizText}>Vad föredrar du?</Text>
+      <Text style={globalStyles.bodyText}>Markera flera alternativ eller välja att gå vidare utan att göra något val.</Text>
       <List>
         {items.map(item => {
           return renderItem(item);
@@ -93,7 +95,7 @@ export default function Categories({ navigation }) {
       </List>
 
       <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', {category: selectedItems(items)})}>
-        <Text style={globalStyles.buttonText}>Suprice me!</Text>
+        <Text style={globalStyles.buttonText}>Gillar allt!</Text>
       </TouchableOpacity>
 
       <View style = {globalStyles.quizFooter}>
@@ -108,19 +110,23 @@ export default function Categories({ navigation }) {
 const styles = StyleSheet.create({
   selected: {
     justifyContent: 'center',
-    alignItems: "center",
     marginVertical: 5,
+    marginHorizontal: 12,
+    //padding: 10,
     borderRadius: 12,
     backgroundColor: 'pink',
-    width: 250,
+    //width: 380,
   },
   normal: {
     justifyContent: 'center',
-    alignItems: "center",
     marginVertical: 5,
+    marginHorizontal: 12,
+    //padding: 10,
     borderRadius: 12,
-    backgroundColor: 'coral',
-    width: 250,
+    //backgroundColor: 'coral',
+    borderColor: 'coral',
+    borderWidth: 1,
+    //width: 380,
   }
 })
 
