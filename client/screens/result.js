@@ -21,19 +21,25 @@ export default function Result({ navigation }) {
     console.log('useEffect()');
     async function asyncFunction() {
       try {
+        console.log(product + ' 1');
         // IP-adress till datorn som kör servern
+        //172.23.133.137 get LAN IP
         let response = await fetch('http://130.239.238.189:8081/api/client/category/Cider');
+        console.log(product + ' 2');
         let json = await response.json();
         console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
         product.setValue(json[0].ProductNameBold);
+        console.log(product);
         console.log('Value 2: ' + json[0].ProductNameBold);
         //product = json[0].ProductNameBold;
         status = true;
       } catch (error) {
         //console.log(error);
+        console.log(product + ' error');
         return 'error';
       }
+      console.log(product + ' out');
     };
     asyncFunction();
   }, [])
