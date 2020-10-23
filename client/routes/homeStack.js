@@ -23,8 +23,9 @@ const screens = {
       headerTitle: () => <HomeHeader />
     }*/
     navigationOptions: {
-      title: "Hem",
+      title: "",
       headerShown: false,
+
     }
   },
   ConfirmAge: {
@@ -39,37 +40,37 @@ const screens = {
   Quiz1: {
     screen: Quiz1,
     navigationOptions: {
-      title: "Fråga 1",
+      title: "",
     }
   },
   Quiz2: {
     screen: Quiz2,
     navigationOptions: {
-      title: "Fråga 2",
+      title: "",
     }
   },
   Quiz3: {
     screen: Quiz3,
     navigationOptions: {
-      title: "Fråga 3",
+      title: "",
     }
   },
   Quiz4: {
     screen: Quiz4,
     navigationOptions: {
-      title: "Fråga 4",
+      title: "",
     }
   },
   Categories: {
     screen: Categories,
     navigationOptions: {
-      title: "Välj kategori",
+      title: "",
     }
   },
   Result: {
     screen: Result,
     navigationOptions: {
-      title: "Resultat",
+      title: "",
     }
   },
   Search: {
