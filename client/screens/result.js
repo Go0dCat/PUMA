@@ -12,41 +12,47 @@ export default function Result({ navigation }) {
 
   console.log('-------Start------');
 
-  var product = 'Default';
+
+  //This is values for product
+  var [product, setProduct] = useState('Default');
+  var [product, setProduct] = useState('Default');
+
+
+  //var product = 'Default';
   var status = false;
 
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
     console.log('useEffect()');
+    //TODO set up to automatically get ip
+    let lanIP = '172.23.133.137';
+
     async function asyncFunction() {
-      console.log('asyncFuntion()');
+      //console.log('asyncFuntion()');
       try {
-<<<<<<< HEAD
-        console.log(product + ' 1');
+        //console.log('try');
         // IP-adress till datorn som kör servern
-        //172.23.133.137 get LAN IP
-        let response = await fetch('http://130.239.238.189:8081/api/client/category/Cider');
-        console.log(product + ' 2');
-=======
-        console.log('try');
-        // IP-adress till datorn som kör servern
-        let response = await fetch('http://172.23.130.126:8081/api/client/category/Cider');
->>>>>>> b01aeb2325660adf4db52fc9c4abc9ac9bcefe0f
+        //lokala LAN
+        //console.log(product + ' 1');
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/Cider');
+
         let json = await response.json();
-        console.log('Value 1: ' + json[0].ProductNameBold);
+        //console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
-        product.setValue(json[0].ProductNameBold);
-        console.log(product);
-        console.log('Value 2: ' + json[0].ProductNameBold);
+        //console.log(product + ' 2');
+        setProduct(json[0].ProductNameBold);
+        //product = json[0].ProductNameBold;
+        //console.log(product + ' 2');
+        //console.log('Value 2: ' + json[0].ProductNameBold);
         //product = json[0].ProductNameBold;
         status = true;
       } catch (error) {
-        //console.log(error);
-        console.log(product + ' error');
+        console.log(error);
+        //console.log(product + ' error');
         return 'error';
       }
-      console.log(product + ' out');
+      //console.log(product + ' out');
     };
     asyncFunction();
   }, [])
@@ -73,6 +79,8 @@ export default function Result({ navigation }) {
     // Kolla om det finns en "pop all" för att navigera till Home.
     navigation.goBack();
   };
+
+  //console.log(product + 'test');
 
   //if (status) {
   return (
