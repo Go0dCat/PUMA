@@ -10,32 +10,87 @@ export default function Result({ navigation }) {
     navigation.popToTop();
   };
 
-  console.log('-------Start------');
+  console.log('-------Start---------');
 
-  var product = 'Default';
+
+  //This is values for product
+  var [product, setProduct] = useState('Default');
+  var [product, setProduct] = useState('Default');
+  const [productState, setProductState] = useState({
+    ProductId: 'productid',
+    ProductNumber: 'productnumber',
+    ProductNameBold: 'productnamebold',
+    ProductNameThin: 'productnamethin',
+    Category: 'category',
+    BottleTextShort: 'bottletextshort',
+    AlcoholPercentage: 'alcoholpercentage',
+    Volume: 'volume',
+    Price: 'price',
+    SubCategory: 'subcategotegory',
+    Type: 'type',
+   });
+    //console.log(productState.ProductId + ' test');
+    //console.log(productState.ProductNameBold + ' test 2');
+
+
+  //var product = 'Default';
   var status = false;
 
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
-    console.log('useEffect()');
+    //console.log('useEffect()');
+    //TODO set up to automatically get ip
+    let lanIP = '172.23.133.137';
+
     async function asyncFunction() {
-      console.log('asyncFuntion()');
+      //console.log('asyncFuntion()');
       try {
-        console.log('try');
+        //console.log('try');
         // IP-adress till datorn som kör servern
-        let response = await fetch('http://172.23.130.126:8081/api/client/category/Cider');
+        //lokala LAN
+        //console.log(product + ' 1');
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/Cider');
+
         let json = await response.json();
-        console.log('Value 1: ' + json[0].ProductNameBold);
+        //console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
-        product.setValue(json[0].ProductNameBold);
-        console.log('Value 2: ' + json[0].ProductNameBold);
+        //console.log(product + ' 2');
+
+        //TODO make algoritm for this
+        let x = Math.floor(Math.random() * json.length);
+
+        console.log(x);
+
+
+        //TODO replace with object
+        //setProduct(json[x].ProductNameBold);
+
+        setProductState(prevProductState => ({
+          ...prevProductState,
+          ProductId: json[x].ProductId,
+          ProductNumber: json[x].ProductNumber,
+          ProductNameBold: json[x].ProductNameBold,
+          ProductNameThin: json[x].ProductNameThin,
+          Category: json[x].Category,
+          BottleTextShort: json[x].BottleTextShort,
+          AlcoholPercentage: json[x].AlcoholPercentage,
+          Volume: json[x].Volume,
+          Price: json[x].Price,
+          SubCategory: json[x].SubCategory,
+          Type: json[x].Type,
+        }));
+        //product = json[0].ProductNameBold;
+        //console.log(product + ' 2');
+        //console.log('Value 2: ' + json[0].ProductNameBold);
         //product = json[0].ProductNameBold;
         status = true;
       } catch (error) {
-        //console.log(error);
+        console.log(error);
+        //console.log(product + ' error');
         return 'error';
       }
+      //console.log(product + ' out');
     };
     asyncFunction();
   }, [])
@@ -45,9 +100,9 @@ export default function Result({ navigation }) {
     fetch('http://172.23.130.126:8081/api/client/category/Cider')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log('Response: ' + responseJson[0].ProductNameBold);
+        //console.log('Response: ' + responseJson[0].ProductNameBold);
         //product.setValue({product: responseJson[0].ProductNameBold});
-        product = responseJson[0].ProductNameBold;
+        //product = responseJson[0].ProductNameBold;
         //return responseJson[0].ProductNameBold;
       })
       .catch((error) => {
@@ -63,6 +118,8 @@ export default function Result({ navigation }) {
     navigation.goBack();
   };
 
+
+
   //if (status) {
   return (
     <View style={styles.outerContainer}>
@@ -70,23 +127,23 @@ export default function Result({ navigation }) {
       <View style={styles.innerContainer}>
         <View style={styles.productPriceContainer}>
           <View style={styles.productContainer}>
-            <Text style={styles.productBold}>{product}</Text>
-            <Text style={styles.productThin}>Peach Passion</Text>
+            <Text style={styles.productBold}>{productState.ProductNameBold}</Text>
+            <Text style={styles.productThin}>{productState.ProductNameThin}</Text>
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>24:18</Text>
-            <Text style={styles.volume}>330 ml</Text>
+            <Text style={styles.price}>{productState.Price}</Text>
+            <Text style={styles.volume}>{productState.Volume}</Text>
           </View>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Kategori</Text>
-          <Text>Cider</Text>
+          <Text>{productState.Category}</Text>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Alkoholhalt</Text>
-          <Text>4,5 %</Text>
+          <Text>{productState.AlcoholPercentage} %</Text>
         </View>
       </View>
 
