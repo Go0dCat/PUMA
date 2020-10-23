@@ -13,10 +13,6 @@ export default function Quiz1({ navigation }) {
     { title: 'BBQ', key: '6' },
   ])
 
-<<<<<<< HEAD
-  // let quizAnswers = [];
-  // const situation = navigation.getParam('title');
-=======
   const [answers, setAnswers] = useState([
     { question: '1', answerKey: '', },
     { question: '2', answerKey: '', },
@@ -47,11 +43,10 @@ export default function Quiz1({ navigation }) {
     //answers[0].answerKey = item.key
     console.log("I funktion" + JSON.stringify(answers))
   }
->>>>>>> f275a77c43ba92000a5e50cdd7ced6e2b66fef5f
 
   return (
     <View style={globalStyles.quizContainer}>
-      <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text> 
+      <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
@@ -66,12 +61,6 @@ export default function Quiz1({ navigation }) {
           </TouchableOpacity>
         )}
       />
-<<<<<<< HEAD
-      <View style = {globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_1.png')}/>
-      </View>
-=======
->>>>>>> f275a77c43ba92000a5e50cdd7ced6e2b66fef5f
 
     </View>
   );
