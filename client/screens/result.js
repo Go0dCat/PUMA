@@ -16,6 +16,21 @@ export default function Result({ navigation }) {
   //This is values for product
   var [product, setProduct] = useState('Default');
   var [product, setProduct] = useState('Default');
+  const [productState, setProductState] = useState({
+    ProductId: 'productid',
+    ProductNumber: 'productnumber',
+    ProductNameBold: 'productnamebold',
+    ProductNameThin: 'productnamethin',
+    Category: 'category',
+    BottleTextShort: 'bottletextshort',
+    AlcoholPercentage: 'alcoholpercentage',
+    Volume: 'volume',
+    Price: 'price',
+    SubCategory: 'subcategotegory',
+    Type: 'type',
+   });
+    console.log(productState.ProductId + ' test');
+    console.log(productState.ProductNameBold + ' test 2');
 
 
   //var product = 'Default';
@@ -41,7 +56,27 @@ export default function Result({ navigation }) {
         //console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
         //console.log(product + ' 2');
-        setProduct(json[0].ProductNameBold);
+
+        //TODO make algoritm for this
+        let x = 1;
+
+        //TODO replace with object
+        setProduct(json[x].ProductNameBold);
+
+        setProductState(prevProductState => ({
+          ...prevProductState,
+          ProductId: json[x].ProductId,
+          ProductNumber: json[x].ProductNumber,
+          ProductNameBold: json[x].ProductNameBold,
+          ProductNameThin: json[x].ProductNameThin,
+          Category: json[x].Category,
+          BottleTextShort: json[x].BottleTextShort,
+          AlcoholPercentage: json[x].AlcoholPercentage,
+          Volume: json[x].Volume,
+          Price: json[x].Price,
+          SubCategory: json[x].SubCategory,
+          Type: json[x].Type,
+        }));
         //product = json[0].ProductNameBold;
         //console.log(product + ' 2');
         //console.log('Value 2: ' + json[0].ProductNameBold);
@@ -80,7 +115,7 @@ export default function Result({ navigation }) {
     navigation.goBack();
   };
 
-  //console.log(product + 'test');
+
 
   //if (status) {
   return (
@@ -89,23 +124,23 @@ export default function Result({ navigation }) {
       <View style={styles.innerContainer}>
         <View style={styles.productPriceContainer}>
           <View style={styles.productContainer}>
-            <Text style={styles.productBold}>{product}</Text>
-            <Text style={styles.productThin}>Peach Passion</Text>
+            <Text style={styles.productBold}>{productState.ProductNameBold}</Text>
+            <Text style={styles.productThin}>{productState.ProductNameThin}</Text>
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>24:18</Text>
-            <Text style={styles.volume}>330 ml</Text>
+            <Text style={styles.price}>{productState.Price}</Text>
+            <Text style={styles.volume}>{productState.Volume}</Text>
           </View>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Kategori</Text>
-          <Text>Cider</Text>
+          <Text>{productState.Category}</Text>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Alkoholhalt</Text>
-          <Text>4,5 %</Text>
+          <Text>{productState.AlcoholPercentage} %</Text>
         </View>
       </View>
 
