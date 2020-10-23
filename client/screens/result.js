@@ -20,12 +20,19 @@ export default function Result({ navigation }) {
   useEffect(() => {
     console.log('useEffect()');
     async function asyncFunction() {
+      console.log('asyncFuntion()');
       try {
+<<<<<<< HEAD
         console.log(product + ' 1');
         // IP-adress till datorn som kör servern
         //172.23.133.137 get LAN IP
         let response = await fetch('http://130.239.238.189:8081/api/client/category/Cider');
         console.log(product + ' 2');
+=======
+        console.log('try');
+        // IP-adress till datorn som kör servern
+        let response = await fetch('http://172.23.130.126:8081/api/client/category/Cider');
+>>>>>>> b01aeb2325660adf4db52fc9c4abc9ac9bcefe0f
         let json = await response.json();
         console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
