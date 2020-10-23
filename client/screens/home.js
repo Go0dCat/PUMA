@@ -30,8 +30,8 @@ export default function Home({ navigation }) {
           Generera den ultimata drycken att köpa på ditt Systembolag.
         </Text>
 
-        <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
-          <Text style={styles.buttonText}>Start</Text>
+        <TouchableOpacity style={globalStyles.startButton} onPress={pressHandler}>
+          <Text style={globalStyles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>
 
@@ -87,18 +87,6 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
     paddingRight: 50,
     marginTop: 20,
-  },
-  startButton: {
-    backgroundColor: "#36575C",
-    borderRadius: 30,
-    margin: 20,
-    marginBottom: "10%",
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-    padding: 15,
   },
   footer: {
     height: "10%",

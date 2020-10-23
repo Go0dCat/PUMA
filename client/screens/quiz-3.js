@@ -16,11 +16,11 @@ export default function Quiz3({ navigation }) {
     <View style={globalStyles.quizContainer}>
       <Text>{navigation.getParam('title')}</Text>
       <Text>{navigation.getParam('key')}</Text>
-      <Text>Fråga 3 - Vem är du på festen?</Text>
+      <Text style={globalStyles.quizText}>Vem är du på festen?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
-        //horizontal={false}
+        // horizontal={false}
         numColumns={2}
         data={partyPersons}
         renderItem={({ item }) => (
@@ -30,6 +30,10 @@ export default function Quiz3({ navigation }) {
           </TouchableOpacity>
         )}
       />
+
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_3.png')}/>
+      </View>
 
     </View>
   );
