@@ -12,6 +12,9 @@ export default function Result({ navigation }) {
 
   console.log('-------Start---------');
 
+  console.log(JSON.stringify(navigation.state.params));
+  console.log(JSON.stringify(navigation.getParam('category')));
+
 
   //This is values for product
   var [product, setProduct] = useState('Default');
