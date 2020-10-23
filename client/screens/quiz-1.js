@@ -12,12 +12,12 @@ export default function Quiz1({ navigation }) {
     { title: 'BBQ', key: '6' },
   ])
 
-  //let quizAnswers = [];
-  //const situation = navigation.getParam('title');
+  // let quizAnswers = [];
+  // const situation = navigation.getParam('title');
 
   return (
     <View style={globalStyles.quizContainer}>
-      <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text>
+      <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text> 
 
       <FlatList
         style={globalStyles.quizAnswers}

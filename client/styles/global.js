@@ -42,7 +42,7 @@ export const globalStyles = StyleSheet.create({
     padding: 15,
   },
   quizFooter: { 
-    height: "10%", //ev uppdatera denna till typ 15% om den ska passa större skärm 
+    height: "10%", // ev uppdatera denna till typ 15% om den ska passa större skärm 
     justifyContent: 'center', 
   },
   quizText: {

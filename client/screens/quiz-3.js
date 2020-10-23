@@ -20,7 +20,7 @@ export default function Quiz3({ navigation }) {
 
       <FlatList
         style={globalStyles.quizAnswers}
-        //horizontal={false}
+        // horizontal={false}
         numColumns={2}
         data={partyPersons}
         renderItem={({ item }) => (

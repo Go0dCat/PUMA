@@ -19,7 +19,7 @@ export default function Quiz4({ navigation }) {
         style={globalStyles.quizAnswers}
         data={prices}
         renderItem={({ item }) => (
-          // Fixa så att objektet både sparas och arrayen skickas med i onPress
+          //Fixa så att objektet både sparas och arrayen skickas med i onPress
           <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Categories', item)}>
             <Image source={images.prices[item.title]} />
           </TouchableOpacity>
