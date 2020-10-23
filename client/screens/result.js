@@ -12,8 +12,8 @@ export default function Result({ navigation }) {
 
   console.log('-------Start---------');
 
-  console.log(JSON.stringify(navigation.state.params));
-  console.log(JSON.stringify(navigation.getParam('category')));
+  //console.log(JSON.stringify(navigation.state.params));
+  //console.log(JSON.stringify(navigation.getParam('category')[0]));
 
 
   //This is values for product
@@ -38,13 +38,15 @@ export default function Result({ navigation }) {
 
   //var product = 'Default';
   var status = false;
+  const [resultJSON, setResultJSON] = useState(null);
 
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
-    //console.log('useEffect()');
+    console.log('useEffect()');
     //TODO set up to automatically get ip
     let lanIP = '172.23.133.137';
+
 
     async function asyncFunction() {
       //console.log('asyncFuntion()');
@@ -53,21 +55,15 @@ export default function Result({ navigation }) {
         // IP-adress till datorn som kör servern
         //lokala LAN
         //console.log(product + ' 1');
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/Cider');
+        //console.log(navigation.getParam('category').length);
+        let y = Math.floor(Math.random() * navigation.getParam('category').length);
+        console.log('this is y: ' + y);
 
+        //TODO ful lösning...
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
         let json = await response.json();
-        //console.log('Value 1: ' + json[0].ProductNameBold);
-        //return json[0].ProductNameBold;
-        //console.log(product + ' 2');
 
-        //TODO make algoritm for this
         let x = Math.floor(Math.random() * json.length);
-
-        console.log(x);
-
-
-        //TODO replace with object
-        //setProduct(json[x].ProductNameBold);
 
         setProductState(prevProductState => ({
           ...prevProductState,
@@ -83,20 +79,84 @@ export default function Result({ navigation }) {
           SubCategory: json[x].SubCategory,
           Type: json[x].Type,
         }));
-        //product = json[0].ProductNameBold;
-        //console.log(product + ' 2');
-        //console.log('Value 2: ' + json[0].ProductNameBold);
-        //product = json[0].ProductNameBold;
+
+
         status = true;
       } catch (error) {
         console.log(error);
-        //console.log(product + ' error');
         return 'error';
       }
-      //console.log(product + ' out');
     };
+
+
+    async function testFunction(category) {
+      //console.log('asyncFuntion()');
+      try {
+
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + category +'/quantity/10');
+
+        //let json = await response.json();
+
+        let json = await response.json();
+
+        setResultJSON(json);
+        status = true;
+
+      } catch (error) {
+        console.log(error);
+        return 'error';
+      }
+    };
+
+     console.log('hi');
+     async function helpFunction() {
+       console.log('inside helpfunction');
+       navigation.getParam('category').forEach((item) => {
+         //console.log('item: '+ item);
+         testFunction(item);
+         });
+         console.log('after helpfunction');
+
+    };
+    //console.log('hi there');
+
+    /*
+    helpFunction().then(function() {
+      console.log('inside then');
+
+       if(resultJSON !== null) {
+
+
+         console.log('resultat ' + JSON.stringify(resultJSON._W[0]));
+
+         let x = Math.floor(Math.random() * resultJSON._W.length);
+         console.log('x is: ' + x);
+         //hibjdcadlnc
+
+
+         setProductState(prevProductState => ({
+           ...prevProductState,
+           ProductId: resultJSON._W[x].ProductId,
+           ProductNumber: resultJSON._W[x].ProductNumber,
+           ProductNameBold: resultJSON._W[x].ProductNameBold,
+           ProductNameThin: resultJSON._W[x].ProductNameThin,
+           Category: resultJSON._W[x].Category,
+           BottleTextShort: resultJSON._W[x].BottleTextShort,
+           AlcoholPercentage: resultJSON._W[x].AlcoholPercentage,
+           Volume: resultJSON._W[x].Volume,
+           Price: resultJSON._W[x].Price,
+           SubCategory: resultJSON._W[x].SubCategory,
+           Type: resultJSON._W[x].Type,
+         }));
+
+       } else {
+         console.log('hoppsan');
+       }
+
+     });
+     */
     asyncFunction();
-  }, [])
+  }, []);
 
   function fetchProduct() {
     console.log('fetch');
@@ -123,6 +183,7 @@ export default function Result({ navigation }) {
 
 
 
+
   //if (status) {
   return (
     <View style={styles.outerContainer}>
@@ -134,8 +195,8 @@ export default function Result({ navigation }) {
             <Text style={styles.productThin}>{productState.ProductNameThin}</Text>
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>{productState.Price}</Text>
-            <Text style={styles.volume}>{productState.Volume}</Text>
+            <Text style={styles.price}>{productState.Price} kr</Text>
+            <Text style={styles.volume}>{productState.Volume} ml</Text>
           </View>
         </View>
 
