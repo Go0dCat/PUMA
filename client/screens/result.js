@@ -16,7 +16,7 @@ export default function Result({ navigation }) {
     async function asyncFunction() {
       try {
         // IP-adress till datorn som kör servern
-        let response = await fetch('http://192.168.1.223:8081/api/client/category/Cider');
+        let response = await fetch('http://130.239.238.189:8081/api/client/category/Cider');
         let json = await response.json();
         console.log('Value 1: ' + json[0].ProductNameBold);
         //return json[0].ProductNameBold;
