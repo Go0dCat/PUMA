@@ -21,12 +21,17 @@ export default function Quiz2({ navigation }) {
 
     <View style={globalStyles.quizContainer}>
       <Text>{navigation.getParam('title')}</Text>
+<<<<<<< HEAD
+      <Text>{navigation.getParam('key')}</Text>
+      <Text style={globalStyles.quizText}>Vilken karaktär är mest du?</Text>
+=======
 
       <Text>Fråga 2 - Vilken karaktär är mest du?</Text>
+>>>>>>> f275a77c43ba92000a5e50cdd7ced6e2b66fef5f
 
       <FlatList
         style={globalStyles.quizAnswers}
-        //horizontal={false}
+        // horizontal={false}
         numColumns={2}
         data={characters}
         renderItem={({ item }) => (
@@ -37,6 +42,9 @@ export default function Quiz2({ navigation }) {
         )}
       />
 
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_2.png')}/>
+      </View>
 
     </View>
 
