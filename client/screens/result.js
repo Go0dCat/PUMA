@@ -10,7 +10,7 @@ export default function Result({ navigation }) {
     navigation.popToTop();
   };
 
-  console.log('-------Start------');
+  console.log('-------Start---------');
 
 
   //This is values for product
@@ -29,8 +29,8 @@ export default function Result({ navigation }) {
     SubCategory: 'subcategotegory',
     Type: 'type',
    });
-    console.log(productState.ProductId + ' test');
-    console.log(productState.ProductNameBold + ' test 2');
+    //console.log(productState.ProductId + ' test');
+    //console.log(productState.ProductNameBold + ' test 2');
 
 
   //var product = 'Default';
@@ -39,7 +39,7 @@ export default function Result({ navigation }) {
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
-    console.log('useEffect()');
+    //console.log('useEffect()');
     //TODO set up to automatically get ip
     let lanIP = '172.23.133.137';
 
@@ -58,10 +58,13 @@ export default function Result({ navigation }) {
         //console.log(product + ' 2');
 
         //TODO make algoritm for this
-        let x = 1;
+        let x = Math.floor(Math.random() * json.length);
+
+        console.log(x);
+
 
         //TODO replace with object
-        setProduct(json[x].ProductNameBold);
+        //setProduct(json[x].ProductNameBold);
 
         setProductState(prevProductState => ({
           ...prevProductState,
@@ -97,9 +100,9 @@ export default function Result({ navigation }) {
     fetch('http://172.23.130.126:8081/api/client/category/Cider')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log('Response: ' + responseJson[0].ProductNameBold);
+        //console.log('Response: ' + responseJson[0].ProductNameBold);
         //product.setValue({product: responseJson[0].ProductNameBold});
-        product = responseJson[0].ProductNameBold;
+        //product = responseJson[0].ProductNameBold;
         //return responseJson[0].ProductNameBold;
       })
       .catch((error) => {
