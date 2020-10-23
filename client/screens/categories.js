@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { List, ListItem } from 'native-base';
 import { globalStyles } from "../styles/global";
 
@@ -92,9 +92,13 @@ export default function Categories({ navigation }) {
         })}
       </List>
 
-      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', selectedItems(items))}>
+      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', {category: selectedItems(items)})}>
         <Text style={globalStyles.buttonText}>Suprice me!</Text>
       </TouchableOpacity>
+
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_5.png')}/>
+      </View>
 
     </View>
   )
