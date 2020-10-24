@@ -129,4 +129,3 @@ const styles = StyleSheet.create({
     //width: 380,
   }
 })
-
