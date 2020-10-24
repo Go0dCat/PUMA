@@ -50,7 +50,6 @@ export default function Quiz1({ navigation }) {
 
       <FlatList
         style={globalStyles.quizAnswers}
-        //horizontal={false}
         numColumns={2}
         data={situations}
         renderItem={({ item }) => (
@@ -61,6 +60,10 @@ export default function Quiz1({ navigation }) {
           </TouchableOpacity>
         )}
       />
+
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_1.png')}/>
+      </View>
 
     </View>
   );

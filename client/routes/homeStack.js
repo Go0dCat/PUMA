@@ -40,31 +40,45 @@ const screens = {
   Quiz1: {
     screen: Quiz1,
     navigationOptions: {
-      title: "",
+      title: " ",
+      headerBackTitleVisible: false,
+      headerTintColor: 'black',
     }
   },
   Quiz2: {
     screen: Quiz2,
     navigationOptions: {
-      title: "",
+      title: " ",
+      headerBackTitleVisible: false,     
+      headerTintColor: 'black',
+      animationEnabled: false, 
     }
   },
   Quiz3: {
     screen: Quiz3,
     navigationOptions: {
-      title: "",
+      title: " ",
+      headerBackTitleVisible: false,
+      headerTintColor: 'black',
+      animationEnabled: false, 
     }
   },
   Quiz4: {
     screen: Quiz4,
     navigationOptions: {
       title: "",
+      headerBackTitleVisible: false,     
+      headerTintColor: 'black',
+      animationEnabled: false, 
     }
   },
   Categories: {
     screen: Categories,
     navigationOptions: {
       title: "",
+      headerBackTitleVisible: false,      
+      headerTintColor: 'black',
+      animationEnabled: false, 
     }
   },
   Result: {
@@ -84,7 +98,7 @@ const screens = {
 // HomeStack är vår stack med screens. Får automatiskt en header inkl tillbakaknappar osv med stackNavigator.
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerStyle: { height: 100 }
+    headerStyle: { height: 90, borderColor: 'white' } //borderColor funkar ej
   }
 });
 

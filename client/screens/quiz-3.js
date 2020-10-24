@@ -14,13 +14,12 @@ export default function Quiz3({ navigation }) {
   
   return (
     <View style={globalStyles.quizContainer}>
-      <Text>{navigation.getParam('title')}</Text>
-      <Text>{navigation.getParam('key')}</Text>
+      {/*<Text>{navigation.getParam('title')}</Text>
+      <Text>{navigation.getParam('key')}</Text>*/}
       <Text style={globalStyles.quizText}>Vem är du på festen?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
-        // horizontal={false}
         numColumns={2}
         data={partyPersons}
         renderItem={({ item }) => (
