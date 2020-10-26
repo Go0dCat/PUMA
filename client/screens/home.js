@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   img: {
     alignSelf: "center",
   },
-  bodyText: {
+  bodyText: { //ta bort
     flex: 1,
     textAlign: "center",
     fontSize: 16,

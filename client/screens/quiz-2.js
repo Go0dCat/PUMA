@@ -22,11 +22,10 @@ export default function Quiz2({ navigation }) {
     <View style={globalStyles.quizContainer}>
       <Text>{navigation.getParam('title')}</Text>
 
-      <Text>Fråga 2 - Vilken karaktär är mest du?</Text>
+      <Text style = {globalStyles.quizText}>Vilken karaktär är mest du?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
-        // horizontal={false}
         numColumns={2}
         data={characters}
         renderItem={({ item }) => (
