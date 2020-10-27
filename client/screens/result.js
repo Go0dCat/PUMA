@@ -174,7 +174,7 @@ export default function Result({ navigation }) {
       case 'Vita viner':
         return require('../assets/generell-vin.png');
         break;
-      case 'Roségit viner':
+      case 'Roséviner':
         return require('../assets/generell-vin.png');
         break;
       default:
