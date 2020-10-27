@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { images, globalStyles } from "../styles/global";
 
 export default function Quiz4({ navigation }) {
@@ -13,7 +13,7 @@ export default function Quiz4({ navigation }) {
     <View style={globalStyles.quizContainer}>
       {/*<Text>{navigation.getParam('title')}</Text>
       <Text>{navigation.getParam('key')}</Text>*/}
-      <Text style={globalStyles.quizText}>Vad är viktigast för dig?</Text>
+      <Text style={globalStyles.quizText}>Hur mår ditt bankkonto just nu?</Text>
 
       <FlatList
         style={globalStyles.quizAnswers}
@@ -21,7 +21,7 @@ export default function Quiz4({ navigation }) {
         renderItem={({ item }) => (
           //Fixa så att objektet både sparas och arrayen skickas med i onPress
           <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Categories', item)}>
-            <Image source={images.prices[item.title]} />
+            <Image style={styles.img} source={images.prices[item.title]} />
           </TouchableOpacity>
         )}
       />
@@ -34,3 +34,11 @@ export default function Quiz4({ navigation }) {
   );
     
 }
+
+const styles = StyleSheet.create({
+  img: {
+    width: 310,
+    height: 155,
+    alignSelf: 'center',
+  },
+});
