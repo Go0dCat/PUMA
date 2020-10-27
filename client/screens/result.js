@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { globalStyles } from '../styles/global'
+import { globalStyles } from '../styles/global';
+
 
 export default function Result({ navigation }) {
 
