@@ -53,6 +53,8 @@ export default function Result({ navigation }) {
 
         //TODO ful lösning...
         let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+
         let json = await response.json();
 
         let x = Math.floor(Math.random() * json.length);
