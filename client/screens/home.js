@@ -24,13 +24,15 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <Image style={styles.img} source={require('../assets/Logga.png')} />
+        <View style={styles.imgContainer}>
+          <Image style={styles.img} source={require('../assets/Logga.png')} />
+        </View>        
 
         <Text style={styles.bodyText}>
           Generera den ultimata drycken att köpa på ditt Systembolag.
         </Text>
 
-        <TouchableOpacity style={globalStyles.startButton} onPress={pressHandler}>
+        <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
           <Text style={globalStyles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>
@@ -41,7 +43,7 @@ export default function Home({ navigation }) {
           <Text style={styles.footerText}>Inget valt bolag</Text>
         </View>
         <TouchableOpacity style={styles.footerBtn} onPress={() => navigation.push("Search")}>
-          <Text style={styles.footerBtnText}>Välj bolag</Text>
+          <Text style={styles.footerBtnText}>Byt bolag</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -77,8 +79,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     backgroundColor: "yellow",
   },
+  imgContainer: {
+    paddingTop: 50,
+    height: 350,
+  },
   img: {
+    flex: 1,
     alignSelf: "center",
+    resizeMode: 'contain',
   },
   bodyText: { //ta bort
     flex: 1,
@@ -86,7 +94,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 50,
     paddingRight: 50,
+    paddingTop: 20,
     marginTop: 20,
+  },
+  startButton: { 
+    backgroundColor: "#36575C",
+    borderRadius: 30,
+    margin: 20,
+    marginBottom: "30%",
   },
   footer: {
     height: "10%",
