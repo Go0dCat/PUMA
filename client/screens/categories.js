@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { List, ListItem } from 'native-base';
 import { globalStyles } from "../styles/global";
 
@@ -63,6 +63,7 @@ export default function Categories({ navigation }) {
     return (
       <ListItem
         onPress={() => onPress(item)}
+        key={item.key}
         style={[item.selected ? styles.selected : styles.normal]}>
         <View>
           <Text>{item.title}</Text>
@@ -83,18 +84,23 @@ export default function Categories({ navigation }) {
   };
 
   return (
-    <View style={globalStyles.quizContainer}>
+    <View style={globalStyles.categorieContainer}>
 
       <Text style={globalStyles.quizText}>Vad föredrar du?</Text>
+      <Text style={globalStyles.bodyText}>Markera flera alternativ eller välja att gå vidare utan att göra något val.</Text>
       <List>
         {items.map(item => {
           return renderItem(item);
         })}
       </List>
 
-      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', selectedItems(items))}>
-        <Text style={globalStyles.buttonText}>Suprice me!</Text>
+      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', {category: selectedItems(items)})}>
+        <Text style={globalStyles.buttonText}>Gillar allt!</Text>
       </TouchableOpacity>
+
+      <View style = {globalStyles.quizFooter}>
+        <Image source={require('../assets/navbar_5.png')}/>
+      </View>
 
     </View>
   )
@@ -104,19 +110,22 @@ export default function Categories({ navigation }) {
 const styles = StyleSheet.create({
   selected: {
     justifyContent: 'center',
-    alignItems: "center",
     marginVertical: 5,
+    marginHorizontal: 12,
+    //padding: 10,
     borderRadius: 12,
     backgroundColor: 'pink',
-    width: 250,
+    //width: 380,
   },
   normal: {
     justifyContent: 'center',
-    alignItems: "center",
     marginVertical: 5,
+    marginHorizontal: 12,
+    //padding: 10,
     borderRadius: 12,
-    backgroundColor: 'coral',
-    width: 250,
+    //backgroundColor: 'coral',
+    borderColor: 'coral',
+    borderWidth: 1,
+    //width: 380,
   }
 })
-

@@ -10,42 +10,162 @@ export default function Result({ navigation }) {
     navigation.popToTop();
   };
 
-  console.log('-------Start------');
+  console.log('-------Start---------');
 
-  var product = 'Default';
+  //console.log(JSON.stringify(navigation.state.params));
+  //console.log(JSON.stringify(navigation.getParam('category')[0]));
+
+
+  //This is values for product
+  var [product, setProduct] = useState('Default');
+  var [product, setProduct] = useState('Default');
+  const [productState, setProductState] = useState({
+    ProductId: 'productid',
+    ProductNumber: 'productnumber',
+    ProductNameBold: 'productnamebold',
+    ProductNameThin: 'productnamethin',
+    Category: 'category',
+    BottleTextShort: 'bottletextshort',
+    AlcoholPercentage: 'alcoholpercentage',
+    Volume: 'volume',
+    Price: 'price',
+    SubCategory: 'subcategotegory',
+    Type: 'type',
+   });
+    //console.log(productState.ProductId + ' test');
+    //console.log(productState.ProductNameBold + ' test 2');
+
+
+  //var product = 'Default';
   var status = false;
+  const [resultJSON, setResultJSON] = useState(null);
 
   // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
 
   useEffect(() => {
     console.log('useEffect()');
+    //TODO set up to automatically get ip
+    let lanIP = '172.23.133.137';
+
+
     async function asyncFunction() {
+      //console.log('asyncFuntion()');
       try {
+        //console.log('try');
         // IP-adress till datorn som kör servern
-        let response = await fetch('http://130.239.238.189:8081/api/client/category/Cider');
+        //lokala LAN
+        //console.log(product + ' 1');
+        //console.log(navigation.getParam('category').length);
+        let y = Math.floor(Math.random() * navigation.getParam('category').length);
+        console.log('this is y: ' + y);
+
+        //TODO ful lösning...
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
         let json = await response.json();
-        console.log('Value 1: ' + json[0].ProductNameBold);
-        //return json[0].ProductNameBold;
-        product.setValue(json[0].ProductNameBold);
-        console.log('Value 2: ' + json[0].ProductNameBold);
-        //product = json[0].ProductNameBold;
+
+        let x = Math.floor(Math.random() * json.length);
+
+        setProductState(prevProductState => ({
+          ...prevProductState,
+          ProductId: json[x].ProductId,
+          ProductNumber: json[x].ProductNumber,
+          ProductNameBold: json[x].ProductNameBold,
+          ProductNameThin: json[x].ProductNameThin,
+          Category: json[x].Category,
+          BottleTextShort: json[x].BottleTextShort,
+          AlcoholPercentage: json[x].AlcoholPercentage,
+          Volume: json[x].Volume,
+          Price: json[x].Price,
+          SubCategory: json[x].SubCategory,
+          Type: json[x].Type,
+        }));
+
+
         status = true;
       } catch (error) {
-        //console.log(error);
+        console.log(error);
         return 'error';
       }
     };
+
+
+    async function testFunction(category) {
+      //console.log('asyncFuntion()');
+      try {
+
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + category +'/quantity/10');
+
+        //let json = await response.json();
+
+        let json = await response.json();
+
+        setResultJSON(json);
+        status = true;
+
+      } catch (error) {
+        console.log(error);
+        return 'error';
+      }
+    };
+
+     console.log('hi');
+     async function helpFunction() {
+       console.log('inside helpfunction');
+       navigation.getParam('category').forEach((item) => {
+         //console.log('item: '+ item);
+         testFunction(item);
+         });
+         console.log('after helpfunction');
+
+    };
+    //console.log('hi there');
+
+    /*
+    helpFunction().then(function() {
+      console.log('inside then');
+
+       if(resultJSON !== null) {
+
+
+         console.log('resultat ' + JSON.stringify(resultJSON._W[0]));
+
+         let x = Math.floor(Math.random() * resultJSON._W.length);
+         console.log('x is: ' + x);
+         //hibjdcadlnc
+
+
+         setProductState(prevProductState => ({
+           ...prevProductState,
+           ProductId: resultJSON._W[x].ProductId,
+           ProductNumber: resultJSON._W[x].ProductNumber,
+           ProductNameBold: resultJSON._W[x].ProductNameBold,
+           ProductNameThin: resultJSON._W[x].ProductNameThin,
+           Category: resultJSON._W[x].Category,
+           BottleTextShort: resultJSON._W[x].BottleTextShort,
+           AlcoholPercentage: resultJSON._W[x].AlcoholPercentage,
+           Volume: resultJSON._W[x].Volume,
+           Price: resultJSON._W[x].Price,
+           SubCategory: resultJSON._W[x].SubCategory,
+           Type: resultJSON._W[x].Type,
+         }));
+
+       } else {
+         console.log('hoppsan');
+       }
+
+     });
+     */
     asyncFunction();
-  }, [])
+  }, []);
 
   function fetchProduct() {
     console.log('fetch');
     fetch('http://172.23.130.126:8081/api/client/category/Cider')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log('Response: ' + responseJson[0].ProductNameBold);
+        //console.log('Response: ' + responseJson[0].ProductNameBold);
         //product.setValue({product: responseJson[0].ProductNameBold});
-        product = responseJson[0].ProductNameBold;
+        //product = responseJson[0].ProductNameBold;
         //return responseJson[0].ProductNameBold;
       })
       .catch((error) => {
@@ -61,6 +181,9 @@ export default function Result({ navigation }) {
     navigation.goBack();
   };
 
+
+
+
   //if (status) {
   return (
     <View style={styles.outerContainer}>
@@ -68,23 +191,23 @@ export default function Result({ navigation }) {
       <View style={styles.innerContainer}>
         <View style={styles.productPriceContainer}>
           <View style={styles.productContainer}>
-            <Text style={styles.productBold}>{product}</Text>
-            <Text style={styles.productThin}>Peach Passion</Text>
+            <Text style={styles.productBold}>{productState.ProductNameBold}</Text>
+            <Text style={styles.productThin}>{productState.ProductNameThin}</Text>
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>24:18</Text>
-            <Text style={styles.volume}>330 ml</Text>
+            <Text style={styles.price}>{productState.Price} kr</Text>
+            <Text style={styles.volume}>{productState.Volume} ml</Text>
           </View>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Kategori</Text>
-          <Text>Cider</Text>
+          <Text>{productState.Category}</Text>
         </View>
 
         <View style={styles.attributeContainer}>
           <Text style={styles.bold}>Alkoholhalt</Text>
-          <Text>4,5 %</Text>
+          <Text>{productState.AlcoholPercentage} %</Text>
         </View>
       </View>
 
