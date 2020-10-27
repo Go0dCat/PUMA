@@ -22,9 +22,12 @@ function useSelectionChange(items) {
   return selectionMode;
 }
 
+
+
 export default function Categories({ navigation }) {
   const [items, setItems] = useState(categories);
   const selectionMode = useSelectionChange(items);
+  //console.log(navigation.getParam('pricelevel'));
 
   const toggleSelect = item => {
     setItems(
@@ -94,7 +97,7 @@ export default function Categories({ navigation }) {
         })}
       </List>
 
-      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', { category: selectedItems(items) })}>
+      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', { category: selectedItems(items), pricelevel: navigation.getParam('pricelevel')})}>
         <Text style={globalStyles.buttonText}>Generera dryck</Text>
       </TouchableOpacity>
 

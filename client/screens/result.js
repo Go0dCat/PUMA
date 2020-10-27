@@ -7,6 +7,8 @@ import { globalStyles } from '../styles/global';
 export default function Result({ navigation }) {
 
   console.log('-------Start result---------');
+
+  console.log(navigation.getParam('pricelevel'));
   //console.log(JSON.stringify(navigation.state.params));
   //console.log(JSON.stringify(navigation.getParam('category')[0]));
 
@@ -38,7 +40,8 @@ export default function Result({ navigation }) {
   useEffect(() => {
     console.log('useEffect()');
     //TODO set up to automatically get ip
-    let lanIP = '172.23.131.115';
+    //let lanIP = '172.23.131.115';
+    let lanIP = '192.168.1.3'; //SJ home IP
 
     async function asyncFunction() {
       //console.log('asyncFuntion()');
@@ -50,10 +53,13 @@ export default function Result({ navigation }) {
         //console.log(navigation.getParam('category').length);
         let y = Math.floor(Math.random() * navigation.getParam('category').length);
         //console.log('this is y: ' + y);
+        console.log(navigation.getParam('category')[y]);
 
         //TODO ful lösning...
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
-        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+
+        console.log('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/quantity/100/pricelevel/' + navigation.getParam('pricelevel'));
 
         let json = await response.json();
 
