@@ -5,7 +5,7 @@ import { images, globalStyles } from "../styles/global";
 export default function Quiz4({ navigation }) {
   const [prices, setPrice] = useState([
     { title: 'billigt', key: '1' },
-    { title: 'mellan', key: '2' }, 
+    { title: 'mellan', key: '2' },
     { title: 'dyrt', key: '3' },
   ])
 
@@ -26,13 +26,15 @@ export default function Quiz4({ navigation }) {
         )}
       />
 
-      <View style = {globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_4.png')}/>
+      <View style={globalStyles.quizFooter}>
+        <View style={globalStyles.navbarContainer}>
+          <Image style={globalStyles.navbarImg} source={require('../assets/navbar_4.png')} />
+        </View>
       </View>
 
     </View>
   );
-    
+
 }
 
 const styles = StyleSheet.create({
