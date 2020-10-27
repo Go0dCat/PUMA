@@ -12,6 +12,7 @@ export default function Result({ navigation }) {
   //This is values for product
   var [product, setProduct] = useState('Default');
   var [product, setProduct] = useState('Default');
+  var [categoryResult, setCategoryResult] = useState('Default');
   const [productState, setProductState] = useState({
     ProductId: 'productid',
     ProductNumber: 'productnumber',
@@ -32,6 +33,7 @@ export default function Result({ navigation }) {
   var status = false;
   const [resultJSON, setResultJSON] = useState(null);
 
+
   useEffect(() => {
     console.log('useEffect()');
     //TODO set up to automatically get ip
@@ -46,13 +48,16 @@ export default function Result({ navigation }) {
         //console.log(product + ' 1');
         //console.log(navigation.getParam('category').length);
         let y = Math.floor(Math.random() * navigation.getParam('category').length);
-        console.log('this is y: ' + y);
+        //console.log('this is y: ' + y);
 
         //TODO ful lösning...
         let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
         let json = await response.json();
 
         let x = Math.floor(Math.random() * json.length);
+
+        //console.log('this is what i get'+json[x].Category);
+        setCategoryResult(json[x].Category);
 
         setProductState(prevProductState => ({
           ...prevProductState,
@@ -96,14 +101,14 @@ export default function Result({ navigation }) {
       }
     };
 
-     console.log('hi');
+     //console.log('hi');
      async function helpFunction() {
-       console.log('inside helpfunction');
+       //console.log('inside helpfunction');
        navigation.getParam('category').forEach((item) => {
          //console.log('item: '+ item);
          testFunction(item);
          });
-         console.log('after helpfunction');
+         //console.log('after helpfunction');
 
     };
     //console.log('hi there');
@@ -143,7 +148,11 @@ export default function Result({ navigation }) {
 
      });
      */
-    asyncFunction();
+
+     //componentDidMount(){}
+       asyncFunction();
+      //asyncFunction();
+
   }, []);
 
 
@@ -152,6 +161,30 @@ export default function Result({ navigation }) {
     navigation.popToTop();
   };
 
+  const imageFunction = () => {
+    console.log('Category of result is: ' + categoryResult);
+
+    switch (categoryResult) {
+      case 'Mousserande viner':
+        return require('../assets/generell-vin.png');
+        break;
+      case 'Röda viner':
+        return require('../assets/generell-vin.png');
+        break;
+      case 'Vita viner':
+        return require('../assets/generell-vin.png');
+        break;
+      case 'Roséviner':
+        return require('../assets/generell-vin.png');
+        break;
+      default:
+        return require('../assets/generell-öl-cider-blanddryck.png');
+        break;
+    }
+    //return require('../assets/generell-öl-cider-blanddryck.png');
+    //return require('../assets/generell-vin.png');
+  }
+
 
   return (
     <View style={styles.outerContainer}>
@@ -159,7 +192,7 @@ export default function Result({ navigation }) {
       <View style={styles.innerContainer}>
 
         <View style={styles.imageContainer}>
-          <Image style={styles.img} source={require('../assets/generell-öl-cider-blanddryck.png')} />
+          <Image style={styles.img} source={imageFunction()} />
         </View>
 
         <View style={styles.productPriceContainer}>
