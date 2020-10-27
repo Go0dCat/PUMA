@@ -110,7 +110,7 @@ export default function Categories({ navigation }) {
 const styles = StyleSheet.create({
   selected: {
     justifyContent: 'center',
-    //marginVertical: 5,
+    marginVertical: 5,
     marginHorizontal: 12,
     //padding: 10,
     borderRadius: 12,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   normal: {
     justifyContent: 'center',
-    //marginVertical: 5,
+    marginVertical: 5,
     marginHorizontal: 12,
     //padding: 10,
     borderRadius: 12,
