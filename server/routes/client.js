@@ -132,6 +132,72 @@ router.get('/client/category/:category/quantity/:quantity/pricelevel/:pricelevel
 
 });
 
+router.get('/client/quantity/:quantity/pricelevel/:pricelevel', function(req, res, next){
+  console.log('Request: ' + req.params.quantity + ' by ' + req.params.pricelevel + ' pricelevel');
+
+  Product.find().then(function(products){
+    let result = [];
+    let numbers = [];
+    //console.log('got them products by SubCategory');
+
+    for (let i = 0; i < Math.min(req.params.quantity, products.length); i++) {
+      let foundX = false;
+      do {
+        let x = Math.floor(Math.random() * products.length);
+        if(!numbers.includes(x)) {
+          //console.log('found one!');
+
+          //add check for price here
+          PriceLevel.findOne({name: req.params.pricelevel}).then(function(pricelevel){
+            //console.log('looking for prices');
+
+            //TODO check what happens if price doesnt exist
+            //loop through pricelevel list
+            for(let j = 0; j < pricelevel.limits.length; j++) {
+              //console.log('looping through list entry ' + i + ' '+ j);
+              if(pricelevel.limits[j].beverage === products[x].SubCategory) {
+                //console.log('found matching bev + subcat');
+                //get product kr/liter
+                //console.log(products[x].Price +' / ' +products[x].Volume/1000);
+                let compPrice = products[x].Price / (products[x].Volume/1000);
+                console.log(products[x].Price +' / ' +products[x].Volume +' = ' + compPrice);
+
+                if(pricelevel.limits[j].upperlimit >= compPrice && pricelevel.limits[j].lowerlimit <= compPrice) {
+                  //console.log('entered comparison');
+                  console.log('i got through' + compPrice);
+
+                  //console.log('result is' + result);
+                  result.push(products[x]);
+                }
+              }
+              //console.log('printing i: ' + i +' and ' + j);
+              if(i >= Math.min(req.params.quantity, products.length) - 1 && j >= pricelevel.limits.length -1) {
+                //console.log('i got here');
+                res.send(result);
+              }
+            }
+            //NOTE this will not return anything if no matching entry exits
+
+          }).catch(next);
+
+
+          numbers.push(x);
+          foundX = true;
+          //console.log('found and added' + x);
+        }
+
+        //console.log('found ' + x);
+      } while(!foundX);
+      console.log('dowhile done');
+
+    }
+    //res.send(result);
+    console.log('res with category by x numbers');
+
+  }).catch(next);
+
+});
+
 /* Gets non-alcoholic products within category */
 router.get('/client/non-alcoholic/:category', function(req, res, next){
   console.log('Request');
