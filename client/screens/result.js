@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { globalStyles } from '../styles/global'
 
 export default function Result({ navigation }) {
@@ -157,6 +157,11 @@ export default function Result({ navigation }) {
     <View style={styles.outerContainer}>
 
       <View style={styles.innerContainer}>
+
+        <View style={styles.imageContainer}>
+          <Image style={styles.img} source={require('../assets/generell-öl-cider-blanddryck.png')} />
+        </View>
+
         <View style={styles.productPriceContainer}>
           <View style={styles.productContainer}>
             <Text style={styles.productBold}>{productState.ProductNameBold}</Text>
@@ -208,7 +213,16 @@ const styles = StyleSheet.create({
   innerContainer: {
     padding: 20,
   },
+  imageContainer: {
+    height: 250,
+  },
+  img: {
+    flex: 1,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  },
   productPriceContainer: {
+    paddingTop: 15,
     flexDirection: 'row',
   },
   productContainer: {
