@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { globalStyles } from '../styles/global'
+import { globalStyles } from '../styles/global';
+
 
 export default function Result({ navigation }) {
 
@@ -52,6 +53,8 @@ export default function Result({ navigation }) {
 
         //TODO ful lösning...
         let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+
         let json = await response.json();
 
         let x = Math.floor(Math.random() * json.length);
