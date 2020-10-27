@@ -6,9 +6,7 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {},
-  quizAnswers: {
-  },
-  bodyText: { 
+  bodyText: {
     textAlign: "center",
     fontSize: 16,
     paddingLeft: 50,
@@ -16,14 +14,14 @@ export const globalStyles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
-  startButton: { 
+  startButton: {
     backgroundColor: "#36575C",
     borderRadius: 30,
     margin: 20,
     marginBottom: "10%",
 
   },
-  buttonText: { 
+  buttonText: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
@@ -36,18 +34,30 @@ export const globalStyles = StyleSheet.create({
   },
   quizText: {
     textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold", 
-    padding: 15,
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 45,
   },
   quizAnswer: {
     marginHorizontal: 5,
     marginVertical: 5
   },
-  quizFooter: { 
-    height: "15%", 
+  quizAnsImg: {
+    height: 170,
+    width: 170
+  },
+  quizFooter: {
+    height: "15%",
     alignSelf: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
+  },
+  navbarContainer: {
+    height: 50
+  },
+  navbarImg: {
+    flex: 1,
+    alignSelf: "center",
+    resizeMode: 'contain',
   },
   categorieContainer: {
     flex: 1,
@@ -55,10 +65,10 @@ export const globalStyles = StyleSheet.create({
     padding: 20, // lägg till detta i huvudcontainern för result också 
   },
   categorieOptions: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: "center",
     marginVertical: 5,
-    borderRadius: 12,  
+    borderRadius: 12,
     backgroundColor: 'pink',
   }
 });
@@ -89,7 +99,7 @@ export const images = {
     'gar-inte-dit': require('../assets/gar-inte-dit.png'),
     'startar-dansgolvet': require('../assets/startar-dansgolvet.png'),
     'trubaduren': require('../assets/trubaduren.png'),
-  }, 
+  },
   prices: {
     'billigt': require('../assets/billigt.png'),
     'mellan': require('../assets/mellan.png'),

@@ -38,7 +38,7 @@ export default function Result({ navigation }) {
   useEffect(() => {
     console.log('useEffect()');
     //TODO set up to automatically get ip
-    let lanIP = '192.168.1.3';
+    let lanIP = '172.23.131.115';
 
     async function asyncFunction() {
       //console.log('asyncFuntion()');
