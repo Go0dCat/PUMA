@@ -1,5 +1,9 @@
 import { StyleSheet } from "react-native";
 
+//TODO fix dynamic content, code example below
+//const { height } = Dimensions.get('window');
+//paddingTop: height * 0.1 // 10 percentage of the screen height
+
 export const globalStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -62,7 +66,7 @@ export const globalStyles = StyleSheet.create({
   categorieContainer: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 20, // lägg till detta i huvudcontainern för result också 
+    padding: 20, // lägg till detta i huvudcontainern för result också
   },
   categorieOptions: {
     justifyContent: 'center',

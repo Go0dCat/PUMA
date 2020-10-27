@@ -86,6 +86,15 @@ export default function Categories({ navigation }) {
     return selectedArr
   };
 
+  const isEmpty = ()  => {
+    let isEmpty = false;
+    if(selectedItems(items).length === 0) {
+      isEmpty = true;
+    }
+    console.log('do i get here: ' + isEmpty);
+    return isEmpty;
+  }
+
   return (
     <View style={globalStyles.categorieContainer}>
 
@@ -97,7 +106,9 @@ export default function Categories({ navigation }) {
         })}
       </List>
 
-      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', { category: selectedItems(items), pricelevel: navigation.getParam('pricelevel')})}>
+      <TouchableOpacity style={globalStyles.startButton} onPress={() =>
+
+            navigation.navigate('Result', { category: selectedItems(items), allCategories: isEmpty(), pricelevel: navigation.getParam('pricelevel')})}>
         <Text style={globalStyles.buttonText}>Generera dryck</Text>
       </TouchableOpacity>
 
