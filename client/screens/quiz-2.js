@@ -14,30 +14,30 @@ export default function Quiz2({ navigation }) {
   ])
 
   //let answers = navigation.getParam('answers')
-  console.log("I Quiz 2" + JSON.stringify(navigation.getParam('answerKey')))
+  //console.log("I Quiz 2" + JSON.stringify(navigation.getParam('answerKey')))
 
   return (
 
 
     <View style={globalStyles.quizContainer}>
-      <Text>{navigation.getParam('title')}</Text>
 
-      <Text style = {globalStyles.quizText}>Vilken karaktär är mest du?</Text>
+      <Text style={globalStyles.quizText}>Vilken karaktär är mest du?</Text>
 
       <FlatList
-        style={globalStyles.quizAnswers}
         numColumns={2}
         data={characters}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
           <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz3', item)}>
-            <Image source={images.characters[item.title]} />
+            <Image style={globalStyles.quizAnsImg} source={images.characters[item.title]} />
           </TouchableOpacity>
         )}
       />
 
       <View style={globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_2.png')} />
+        <View style={globalStyles.navbarContainer}>
+          <Image style={globalStyles.navbarImg} source={require('../assets/navbar_2.png')} />
+        </View>
       </View>
 
     </View>
