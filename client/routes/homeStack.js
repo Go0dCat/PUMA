@@ -49,9 +49,9 @@ const screens = {
     screen: Quiz2,
     navigationOptions: {
       title: " ",
-      headerBackTitleVisible: false,     
+      headerBackTitleVisible: false,
       headerTintColor: 'black',
-      animationEnabled: false, 
+      animationEnabled: false,
     }
   },
   Quiz3: {
@@ -60,31 +60,33 @@ const screens = {
       title: " ",
       headerBackTitleVisible: false,
       headerTintColor: 'black',
-      animationEnabled: false, 
+      animationEnabled: false,
     }
   },
   Quiz4: {
     screen: Quiz4,
     navigationOptions: {
       title: "",
-      headerBackTitleVisible: false,     
+      headerBackTitleVisible: false,
       headerTintColor: 'black',
-      animationEnabled: false, 
+      animationEnabled: false,
     }
   },
   Categories: {
     screen: Categories,
     navigationOptions: {
       title: "",
-      headerBackTitleVisible: false,      
+      headerBackTitleVisible: false,
       headerTintColor: 'black',
-      animationEnabled: false, 
+      animationEnabled: false,
     }
   },
   Result: {
     screen: Result,
     navigationOptions: {
       title: "",
+      headerBackTitleVisible: false,
+      headerTintColor: 'black',
     }
   },
   Search: {

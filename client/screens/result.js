@@ -25,9 +25,9 @@ export default function Result({ navigation }) {
     Price: 'price',
     SubCategory: 'subcategotegory',
     Type: 'type',
-   });
-    //console.log(productState.ProductId + ' test');
-    //console.log(productState.ProductNameBold + ' test 2');
+  });
+  //console.log(productState.ProductId + ' test');
+  //console.log(productState.ProductNameBold + ' test 2');
 
   //var product = 'Default';
   var status = false;
@@ -51,7 +51,7 @@ export default function Result({ navigation }) {
         //console.log('this is y: ' + y);
 
         //TODO ful lösning...
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        let response = await fetch('http://' + lanIP + ':8081/api/client/category/' + navigation.getParam('category')[y]);
         let json = await response.json();
 
         let x = Math.floor(Math.random() * json.length);
@@ -86,7 +86,7 @@ export default function Result({ navigation }) {
       //console.log('asyncFuntion()');
       try {
 
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + category +'/quantity/10');
+        let response = await fetch('http://' + lanIP + ':8081/api/client/category/' + category + '/quantity/10');
 
         //let json = await response.json();
 
@@ -101,14 +101,14 @@ export default function Result({ navigation }) {
       }
     };
 
-     //console.log('hi');
-     async function helpFunction() {
-       //console.log('inside helpfunction');
-       navigation.getParam('category').forEach((item) => {
-         //console.log('item: '+ item);
-         testFunction(item);
-         });
-         //console.log('after helpfunction');
+    //console.log('hi');
+    async function helpFunction() {
+      //console.log('inside helpfunction');
+      navigation.getParam('category').forEach((item) => {
+        //console.log('item: '+ item);
+        testFunction(item);
+      });
+      //console.log('after helpfunction');
 
     };
     //console.log('hi there');
@@ -149,16 +149,16 @@ export default function Result({ navigation }) {
      });
      */
 
-     //componentDidMount(){}
-       asyncFunction();
-      //asyncFunction();
+    //componentDidMount(){}
+    asyncFunction();
+    //asyncFunction();
 
   }, []);
 
 
   const pressHandlerStart = () => {
     // Lägger skräm Quiz1 på stacken.
-    navigation.popToTop();
+    navigation.navigate('Home');
   };
 
   const imageFunction = () => {
