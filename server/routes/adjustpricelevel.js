@@ -189,6 +189,15 @@ router.put('/pricelevel/:levelname', function(req, res, next){
   //res.send({type: 'put'});
 });
 
+router.get('/pricelevel/:levelname', function(req, res, next){
+  console.log('put req to pricelevel/:levelname');
+  PriceLevel.find({name: req.params.levelname}).then(function(pricelevel){
+      res.send(pricelevel);
+  }).catch(next);
+
+  //res.send({type: 'put'});
+});
+
 //adds entry in  limits: []
 router.put('/pricelevel/:levelname/beverage', function(req, res, next){
   console.log('put req to pricelevel/:levelname/beverage/:beveragename');

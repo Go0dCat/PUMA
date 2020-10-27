@@ -92,9 +92,13 @@ router.get('/client/category/:category/quantity/:quantity/pricelevel/:pricelevel
               if(pricelevel.limits[j].beverage === products[x].SubCategory) {
                 //console.log('found matching bev + subcat');
                 //get product kr/liter
-                let compPrice = products[x].Price / products[x].Volume;
+                //console.log(products[x].Price +' / ' +products[x].Volume/1000);
+                let compPrice = products[x].Price / (products[x].Volume/1000);
+                console.log(products[x].Price +' / ' +products[x].Volume +' = ' + compPrice);
+
                 if(pricelevel.limits[j].upperlimit >= compPrice && pricelevel.limits[j].lowerlimit <= compPrice) {
                   //console.log('entered comparison');
+                  console.log('i got through' + compPrice);
 
                   //console.log('result is' + result);
                   result.push(products[x]);
