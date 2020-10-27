@@ -72,7 +72,7 @@ router.get('/product/category/:category/quantity/:quantity', function(req, res){
       headers: {'Ocp-Apim-Subscription-Key': '06fdbc8b8df845b3840710ba53db9009'}}
   ).then(response => {
     console.log('res from systembolaget');
-    quantity = req.params.quantity;
+    quantity = req.params.quantity; //TODO mover req.params.quantity to row below
     helpFunction(response.data.Hits, quantity);
   }).catch(error => {
     console.log(error);
