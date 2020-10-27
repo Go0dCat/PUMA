@@ -34,9 +34,9 @@ export const globalStyles = StyleSheet.create({
   },
   quizText: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
-    padding: 50,
+    padding: 45,
   },
   quizAnswer: {
     marginHorizontal: 5,
