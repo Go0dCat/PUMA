@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { Divider } from 'react-native-elements';
 import { globalStyles } from "../styles/global";
 
 export default function Home({ navigation }) {
@@ -33,14 +34,21 @@ export default function Home({ navigation }) {
         </Text>
 
         <TouchableOpacity style={styles.startButton} onPress={pressHandler}>
-          <Text style={globalStyles.buttonText}>Start</Text>
+          <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>
 
+      <Divider style={styles.divider}></Divider>
+
       <View style={styles.footer}>
         <View style={styles.footerLeft}>
-          <Image style={styles.footerImg} source={require('../assets/icon.png')} />
-          <Text style={styles.footerText}>Inget valt bolag</Text>
+          <View style={styles.footerImgText}>
+            <Image style={styles.footerImg} source={require('../assets/sitelogo.png')} />
+            <Text style={styles.footerTextBold}>Rådhusesplanaden</Text>
+          </View>
+          
+          <Text style={styles.footerTextThin}>Rådhusesplanaden 6 E, Umeå</Text>
+          <Text style={styles.footerTextThin}>Öppet idag 10:00-19:00</Text>
         </View>
         <TouchableOpacity style={styles.footerBtn} onPress={() => navigation.push("Search")}>
           <Text style={styles.footerBtnText}>Byt bolag</Text>
@@ -94,30 +102,48 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 50,
     paddingRight: 50,
-    paddingTop: 20,
+    paddingTop: 10,
     marginTop: 20,
   },
   startButton: { 
     backgroundColor: "#36575C",
     borderRadius: 30,
+    marginHorizontal: 35,
     margin: 20,
-    marginBottom: "30%",
+    marginBottom: "20%",
+  },
+  buttonText: { 
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    padding: 15,
   },
   footer: {
-    height: "10%",
     fontWeight: "bold",
-    backgroundColor: "#ddd",
     flexDirection: "row",
     justifyContent: "space-between",
+    padding: 20,
+    paddingBottom: 50,
   },
   footerLeft: {
-    flexDirection: "row",
+    flexDirection: "column",
+  },
+  footerImgText: {
+    flexDirection: 'row',
   },
   footerImg: {
     width: 24,
     height: 24,
   },
-  footerText: {
+  footerTextBold: {
+    paddingLeft: 10,
+    paddingBottom: 10,
+    paddingTop: 5,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: "#000",
+  },
+  footerTextThin: {
     fontSize: 16,
     color: "#000",
   },
@@ -128,11 +154,15 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     height: 40,
     width: 100,
-    marginHorizontal: 10,
     marginVertical: 10,
   },
   footerBtnText: {
     fontWeight: "bold",
     textAlign: "center",
+  },
+  divider: {
+    width: '100%',
+    marginTop: 20,
+    marginEnd: 20,
   },
 });
