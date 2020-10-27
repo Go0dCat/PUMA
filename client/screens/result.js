@@ -155,7 +155,12 @@ export default function Result({ navigation }) {
 
      });
      */
-    asyncFunction();
+
+     //componentDidMount(){}
+       asyncFunction();
+      //asyncFunction();
+
+
   }, []);
 
   function fetchProduct() {
