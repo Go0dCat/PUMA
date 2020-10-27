@@ -11,31 +11,31 @@ export default function Quiz3({ navigation }) {
     { title: 'startar-dansgolvet', key: '4' },
     { title: 'trubaduren', key: '5' },
   ])
-  
+
   return (
     <View style={globalStyles.quizContainer}>
-      {/*<Text>{navigation.getParam('title')}</Text>
-      <Text>{navigation.getParam('key')}</Text>*/}
+
       <Text style={globalStyles.quizText}>Vem är du på festen?</Text>
 
       <FlatList
-        style={globalStyles.quizAnswers}
         numColumns={2}
         data={partyPersons}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
           <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz4', item)}>
-            <Image source={images.partyPersons[item.title]} />
+            <Image style={globalStyles.quizAnsImg} source={images.partyPersons[item.title]} />
           </TouchableOpacity>
         )}
       />
 
-      <View style = {globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_3.png')}/>
+      <View style={globalStyles.quizFooter}>
+        <View style={globalStyles.navbarContainer}>
+          <Image style={globalStyles.navbarImg} source={require('../assets/navbar_3.png')} />
+        </View>
       </View>
 
     </View>
   );
-  
-  
+
+
 }

@@ -41,7 +41,7 @@ export default function Quiz1({ navigation }) {
   function setAnswerArr(item) {
     setAnswers({ answerKey: item.key })
     //answers[0].answerKey = item.key
-    console.log("I funktion" + JSON.stringify(answers))
+    //console.log("I funktion" + JSON.stringify(answers))
   }
 
   return (
@@ -49,22 +49,22 @@ export default function Quiz1({ navigation }) {
       <Text style={globalStyles.quizText}>Vad bjuder kvällen på?</Text>
 
       <FlatList
-        style={globalStyles.quizAnswers}
         numColumns={2}
         data={situations}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
 
           <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => { setAnswerArr(item), navigation.navigate('Quiz2', answers) }}>
-            <Image source={images.situations[item.title]} />
+            <Image style={globalStyles.quizAnsImg} source={images.situations[item.title]} />
           </TouchableOpacity>
         )}
       />
 
-      <View style = {globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_1.png')}/>
+      <View style={globalStyles.quizFooter}>
+        <View style={globalStyles.navbarContainer}>
+          <Image style={globalStyles.navbarImg} source={require('../assets/navbar_1.png')} />
+        </View>
       </View>
-
     </View>
   );
 }
