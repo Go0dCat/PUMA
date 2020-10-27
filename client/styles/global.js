@@ -5,35 +5,23 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  quizContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center"
-  },
   header: {},
   quizAnswers: {
   },
-  quizAnswer: {
-    marginHorizontal: 5,
-    marginVertical: 5
-  },
-  categorieContainer: {
+  bodyText: { 
+    textAlign: "center",
+    fontSize: 16,
+    paddingLeft: 50,
+    paddingRight: 50,
     marginTop: 20,
-    height: 10,
-    width: "90%",
-  },
-  categorieOptions: {
-    justifyContent: 'center', 
-    alignItems: "center",
-    marginVertical: 5,
-    borderRadius: 12,  
-    backgroundColor: 'pink',
+    marginBottom: 20,
   },
   startButton: { 
     backgroundColor: "#36575C",
     borderRadius: 30,
     margin: 20,
     marginBottom: "10%",
+
   },
   buttonText: { 
     color: "white",
@@ -41,14 +29,37 @@ export const globalStyles = StyleSheet.create({
     textAlign: "center",
     padding: 15,
   },
-  quizFooter: { 
-    height: "10%", // ev uppdatera denna till typ 15% om den ska passa större skärm 
-    justifyContent: 'center', 
+  quizContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center"
   },
   quizText: {
+    textAlign: "center",
     fontSize: 16,
     fontWeight: "bold", 
     padding: 15,
+  },
+  quizAnswer: {
+    marginHorizontal: 5,
+    marginVertical: 5
+  },
+  quizFooter: { 
+    height: "15%", 
+    alignSelf: 'center',
+    justifyContent: 'center', 
+  },
+  categorieContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 20, // lägg till detta i huvudcontainern för result också 
+  },
+  categorieOptions: {
+    justifyContent: 'center', 
+    alignItems: "center",
+    marginVertical: 5,
+    borderRadius: 12,  
+    backgroundColor: 'pink',
   }
 });
 

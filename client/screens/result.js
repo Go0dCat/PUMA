@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { globalStyles } from '../styles/global'
 
 export default function Result({ navigation }) {
 
-  const pressHandlerStart = () => {
-    // Lägger skräm Quiz1 på stacken.
-    navigation.popToTop();
-  };
-
-  console.log('-------Start---------');
-
+  console.log('-------Start result---------');
   //console.log(JSON.stringify(navigation.state.params));
   //console.log(JSON.stringify(navigation.getParam('category')[0]));
-
 
   //This is values for product
   var [product, setProduct] = useState('Default');
@@ -35,18 +28,14 @@ export default function Result({ navigation }) {
     //console.log(productState.ProductId + ' test');
     //console.log(productState.ProductNameBold + ' test 2');
 
-
   //var product = 'Default';
   var status = false;
   const [resultJSON, setResultJSON] = useState(null);
 
-  // TODO: Fixa så att 'json[0].ProductNameBold' syns i vyn
-
   useEffect(() => {
     console.log('useEffect()');
     //TODO set up to automatically get ip
-    let lanIP = '172.23.133.137';
-
+    let lanIP = '172.23.131.115';
 
     async function asyncFunction() {
       //console.log('asyncFuntion()');
@@ -79,7 +68,6 @@ export default function Result({ navigation }) {
           SubCategory: json[x].SubCategory,
           Type: json[x].Type,
         }));
-
 
         status = true;
       } catch (error) {
@@ -163,44 +151,29 @@ export default function Result({ navigation }) {
 
   }, []);
 
-  function fetchProduct() {
-    console.log('fetch');
-    fetch('http://172.23.130.126:8081/api/client/category/Cider')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        //console.log('Response: ' + responseJson[0].ProductNameBold);
-        //product.setValue({product: responseJson[0].ProductNameBold});
-        //product = responseJson[0].ProductNameBold;
-        //return responseJson[0].ProductNameBold;
-      })
-      .catch((error) => {
-        console.log(error);
-        //return 'hej';
-      });
-    console.log('utanför');
-    //return 'test';
-  }
 
-  const pressHandler = () => {
-    // Kolla om det finns en "pop all" för att navigera till Home.
-    navigation.goBack();
+  const pressHandlerStart = () => {
+    // Lägger skräm Quiz1 på stacken.
+    navigation.popToTop();
   };
 
 
-
-
-  //if (status) {
   return (
     <View style={styles.outerContainer}>
 
       <View style={styles.innerContainer}>
+
+        <View style={styles.imageContainer}>
+          <Image style={styles.img} source={require('../assets/generell-öl-cider-blanddryck.png')} />
+        </View>
+
         <View style={styles.productPriceContainer}>
           <View style={styles.productContainer}>
             <Text style={styles.productBold}>{productState.ProductNameBold}</Text>
             <Text style={styles.productThin}>{productState.ProductNameThin}</Text>
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>{productState.Price} kr</Text>
+            <Text style={styles.price}>{productState.Price}:-</Text>
             <Text style={styles.volume}>{productState.Volume} ml</Text>
           </View>
         </View>
@@ -234,7 +207,7 @@ export default function Result({ navigation }) {
     </View>
   );
 }
-//}
+
 
 const styles = StyleSheet.create({
 
@@ -245,7 +218,16 @@ const styles = StyleSheet.create({
   innerContainer: {
     padding: 20,
   },
+  imageContainer: {
+    height: 250,
+  },
+  img: {
+    flex: 1,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  },
   productPriceContainer: {
+    paddingTop: 15,
     flexDirection: 'row',
   },
   productContainer: {
@@ -284,6 +266,24 @@ const styles = StyleSheet.create({
   }
 
 })
+
+/*function fetchProduct() {
+    console.log('fetch');
+    fetch('http://172.23.130.126:8081/api/client/category/Cider')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //console.log('Response: ' + responseJson[0].ProductNameBold);
+        //product.setValue({product: responseJson[0].ProductNameBold});
+        //product = responseJson[0].ProductNameBold;
+        //return responseJson[0].ProductNameBold;
+      })
+      .catch((error) => {
+        console.log(error);
+        //return 'hej';
+      });
+    console.log('utanför');
+    //return 'test';
+  }*/
 
 
 /*

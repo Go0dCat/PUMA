@@ -11,8 +11,8 @@ export default function Quiz4({ navigation }) {
 
   return (
     <View style={globalStyles.quizContainer}>
-      <Text>{navigation.getParam('title')}</Text>
-      <Text>{navigation.getParam('key')}</Text>
+      {/*<Text>{navigation.getParam('title')}</Text>
+      <Text>{navigation.getParam('key')}</Text>*/}
       <Text style={globalStyles.quizText}>Vad är viktigast för dig?</Text>
 
       <FlatList
