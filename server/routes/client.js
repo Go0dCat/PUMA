@@ -132,6 +132,7 @@ router.get('/client/category/:category/quantity/:quantity/pricelevel/:pricelevel
 
 });
 
+//gets
 router.get('/client/quantity/:quantity/pricelevel/:pricelevel', function(req, res, next){
   console.log('Request: ' + req.params.quantity + ' by ' + req.params.pricelevel + ' pricelevel');
 

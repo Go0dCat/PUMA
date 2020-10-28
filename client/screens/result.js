@@ -43,7 +43,8 @@ export default function Result({ navigation }) {
     console.log('useEffect()');
     //TODO set up to automatically get ip
     //let lanIP = '172.23.131.115';
-    let lanIP = '192.168.1.3'; //SJ home IP
+    //let lanIP = '192.168.1.3'; //SJ home IP
+    let lanIP = '172.23.133.200';
 
 
 
