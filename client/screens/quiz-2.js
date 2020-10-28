@@ -16,6 +16,16 @@ export default function Quiz2({ navigation }) {
   //let answers = navigation.getParam('answers')
   //console.log("I Quiz 2" + JSON.stringify(navigation.getParam('answerKey')))
 
+    const [ansArr, setAnsArr] = useState(navigation.getParam('answerArr'));
+
+    const getAnswers = item => {
+      console.log('this is on quiz 2 :' + item.key);
+      ansArr.push({value: item.key, key: 2});
+      console.log('ansArr :' + JSON.stringify(ansArr));
+
+      return ansArr;
+    }
+
   return (
 
 
@@ -28,7 +38,7 @@ export default function Quiz2({ navigation }) {
         data={characters}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
-          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz3', item)}>
+          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz3', {answerArr: getAnswers(item)})}>
             <Image style={globalStyles.quizAnsImg} source={images.characters[item.title]} />
           </TouchableOpacity>
         )}

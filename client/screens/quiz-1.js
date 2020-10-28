@@ -20,6 +20,8 @@ export default function Quiz1({ navigation }) {
     { question: '4', answerKey: '', },
   ])
 
+  const [ansArr, setAnsArr] = useState([]);
+
   /*let answers = [
     { question: '1', answerKey: '', },
     { question: '2', answerKey: '', },
@@ -38,11 +40,24 @@ export default function Quiz1({ navigation }) {
     console.log("I funktion" + JSON.stringify(answers))
   }*/
 
-  function setAnswerArr(item) {
-    setAnswers({ answerKey: item.key })
+  const getAnswers = item => {
+    console.log('this is on quiz 1 :' + item.key);
+    ansArr.push({value: item.key, key: 1});
+    console.log(ansArr);
+
+    return ansArr;
+  }
+/*
+  function getAnswers(item) {
+    console.log('this is on quiz 1 :' + item.key);
+    setAnsArr(item.key);
+    console.log(ansArr);
+
+    return item.key;
     //answers[0].answerKey = item.key
     //console.log("I funktion" + JSON.stringify(answers))
   }
+  */
 
   return (
     <View style={globalStyles.quizContainer}>
@@ -54,7 +69,7 @@ export default function Quiz1({ navigation }) {
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
 
-          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => { setAnswerArr(item), navigation.navigate('Quiz2', answers) }}>
+          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => { navigation.navigate('Quiz2', {answerArr: getAnswers(item)}) }}>
             <Image style={globalStyles.quizAnsImg} source={images.situations[item.title]} />
           </TouchableOpacity>
         )}
