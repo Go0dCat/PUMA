@@ -134,28 +134,24 @@ export default function Categories({ navigation }) {
 const styles = StyleSheet.create({
   selected: {
     justifyContent: 'center',
-    //marginVertical: 5,
+    marginVertical: 5,
     marginHorizontal: 12,
-    //padding: 10,
+    padding: 10,
     borderRadius: 8,
     borderColor: "#F2A478",
     borderWidth: 1.5,
     borderBottomWidth: 1.5,
     backgroundColor: '#F2A478',
-    //width: 380,
   },
   normal: {
     justifyContent: 'center',
-    //marginVertical: 5,
+    marginVertical: 5,
     marginHorizontal: 12,
-    //padding: 10,
+    padding: 10,
     borderRadius: 8,
-    //backgroundColor: 'coral',
     borderColor: '#F2A478',
     borderWidth: 1.5,
     borderBottomWidth: 1.5,
-
-    //width: 380,
   },
   quizText: {
     textAlign: "center",

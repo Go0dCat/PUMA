@@ -48,8 +48,8 @@ export default function Quiz4({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 310,
-    height: 155,
+    width: 350,
+    height: 170,
     alignSelf: 'center',
   },
 });
