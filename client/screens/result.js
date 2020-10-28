@@ -30,9 +30,9 @@ export default function Result({ navigation }) {
     Price: 'price',
     SubCategory: 'subcategotegory',
     Type: 'type',
-   });
-    //console.log(productState.ProductId + ' test');
-    //console.log(productState.ProductNameBold + ' test 2');
+  });
+  //console.log(productState.ProductId + ' test');
+  //console.log(productState.ProductNameBold + ' test 2');
 
   //var product = 'Default';
   var status = false;
@@ -43,7 +43,8 @@ export default function Result({ navigation }) {
     console.log('useEffect()');
     //TODO set up to automatically get ip
     //let lanIP = '172.23.131.115';
-    let lanIP = '192.168.1.3'; //SJ home IP
+    //let lanIP = '192.168.1.3'; //SJ home IP
+    let lanIP = '172.23.133.200';
 
 
 
@@ -111,6 +112,7 @@ export default function Result({ navigation }) {
 
 
 
+
         //console.log('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
         //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
         let response = await fetch('http://'+lanIP + ':8081/api/client/quantity/100/pricelevel/' + navigation.getParam('pricelevel'));
@@ -149,7 +151,7 @@ export default function Result({ navigation }) {
       //console.log('asyncFuntion()');
       try {
 
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + category +'/quantity/10');
+        let response = await fetch('http://' + lanIP + ':8081/api/client/category/' + category + '/quantity/10');
 
         //let json = await response.json();
 
@@ -164,14 +166,14 @@ export default function Result({ navigation }) {
       }
     };
 
-     //console.log('hi');
-     async function helpFunction() {
-       //console.log('inside helpfunction');
-       navigation.getParam('category').forEach((item) => {
-         //console.log('item: '+ item);
-         testFunction(item);
-         });
-         //console.log('after helpfunction');
+    //console.log('hi');
+    async function helpFunction() {
+      //console.log('inside helpfunction');
+      navigation.getParam('category').forEach((item) => {
+        //console.log('item: '+ item);
+        testFunction(item);
+      });
+      //console.log('after helpfunction');
 
     };
     //console.log('hi there');
@@ -223,12 +225,13 @@ export default function Result({ navigation }) {
 
       //asyncFunction();
 
+
   }, []);
 
 
   const pressHandlerStart = () => {
     // Lägger skräm Quiz1 på stacken.
-    navigation.popToTop();
+    navigation.navigate('Home');
   };
 
   const imageFunction = () => {
