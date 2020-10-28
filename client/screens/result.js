@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon, Divider } from 'react-native-elements';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import { globalStyles } from '../styles/global'
+import { globalStyles } from '../styles/global';
+
 
 export default function Result({ navigation }) {
 
   console.log('-------Start result---------');
+
+  //console.log(navigation.getParam('pricelevel'));
+  console.log('is empty ' + navigation.getParam('allCategories'));
+
   //console.log(JSON.stringify(navigation.state.params));
   //console.log(JSON.stringify(navigation.getParam('category')[0]));
 
@@ -37,7 +42,10 @@ export default function Result({ navigation }) {
   useEffect(() => {
     console.log('useEffect()');
     //TODO set up to automatically get ip
-    let lanIP = '172.23.131.115';
+    //let lanIP = '172.23.131.115';
+    let lanIP = '192.168.1.3'; //SJ home IP
+
+
 
     async function asyncFunction() {
       //console.log('asyncFuntion()');
@@ -48,10 +56,65 @@ export default function Result({ navigation }) {
         //console.log(product + ' 1');
         //console.log(navigation.getParam('category').length);
         let y = Math.floor(Math.random() * navigation.getParam('category').length);
-        //console.log('this is y: ' + y);
+        //console.log('this is y: ' + y)
+
 
         //TODO ful lösning...
-        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+
+
+
+        //console.log('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/quantity/100/pricelevel/' + navigation.getParam('pricelevel'));
+
+        let json = await response.json();
+
+        let x = Math.floor(Math.random() * json.length);
+
+        //console.log('this is what i get'+json[x].Category);
+        setCategoryResult(json[x].Category);
+
+        setProductState(prevProductState => ({
+          ...prevProductState,
+          ProductId: json[x].ProductId,
+          ProductNumber: json[x].ProductNumber,
+          ProductNameBold: json[x].ProductNameBold,
+          ProductNameThin: json[x].ProductNameThin,
+          Category: json[x].Category,
+          BottleTextShort: json[x].BottleTextShort,
+          AlcoholPercentage: json[x].AlcoholPercentage,
+          Volume: json[x].Volume,
+          Price: json[x].Price,
+          SubCategory: json[x].SubCategory,
+          Type: json[x].Type,
+        }));
+
+        status = true;
+      } catch (error) {
+        console.log(error);
+        return 'error';
+      }
+    };
+
+    async function allCategoriesFunction() {
+      //console.log('asyncFuntion()');
+      try {
+        //console.log('try');
+        // IP-adress till datorn som kör servern
+        //lokala LAN
+        //console.log(product + ' 1');
+        //console.log(navigation.getParam('category').length);
+        //console.log('this is y: ' + y)
+
+
+        //TODO ful lösning...
+
+
+
+        //console.log('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y] + '/pricelevel/' + navigation.getParam('pricelevel'));
+        //let response = await fetch('http://'+lanIP+':8081/api/client/category/' + navigation.getParam('category')[y]);
+        let response = await fetch('http://'+lanIP + ':8081/api/client/quantity/100/pricelevel/' + navigation.getParam('pricelevel'));
+
         let json = await response.json();
 
         let x = Math.floor(Math.random() * json.length);
@@ -150,7 +213,14 @@ export default function Result({ navigation }) {
      */
 
      //componentDidMount(){}
+     if (navigation.getParam('allCategories') === true) {
+       console.log('sant');
+       allCategoriesFunction();
+     } else {
+       console.log('falskt');
        asyncFunction();
+     }
+
       //asyncFunction();
 
   }, []);
@@ -162,7 +232,7 @@ export default function Result({ navigation }) {
   };
 
   const imageFunction = () => {
-    console.log('Category of result is: ' + categoryResult);
+    //console.log('Category of result is: ' + categoryResult);
 
     switch (categoryResult) {
       case 'Mousserande viner':

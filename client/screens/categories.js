@@ -6,7 +6,7 @@ import { globalStyles } from "../styles/global";
 const categories = [
   { title: 'Öl', key: '1' },
   { title: 'Cider', key: '2' },
-  { title: 'Blanddryck', key: '3' },
+  { title: 'Blanddrycker', key: '3' },
   { title: 'Rött vin', key: '4' },
   { title: 'Vitt vin', key: '5' },
   { title: 'Rosévin', key: '6' },
@@ -22,9 +22,12 @@ function useSelectionChange(items) {
   return selectionMode;
 }
 
+
+
 export default function Categories({ navigation }) {
   const [items, setItems] = useState(categories);
   const selectionMode = useSelectionChange(items);
+  //console.log(navigation.getParam('pricelevel'));
 
   const toggleSelect = item => {
     setItems(
@@ -83,49 +86,80 @@ export default function Categories({ navigation }) {
     return selectedArr
   };
 
+  const isEmpty = ()  => {
+    let isEmpty = false;
+    if(selectedItems(items).length === 0) {
+      isEmpty = true;
+    }
+    console.log('do i get here: ' + isEmpty);
+    return isEmpty;
+  }
+
   return (
     <View style={globalStyles.categorieContainer}>
 
-      <Text style={globalStyles.quizText}>Vad föredrar du?</Text>
-      <Text style={globalStyles.bodyText}>Markera flera alternativ eller välja att gå vidare utan att göra något val.</Text>
+      <Text style={styles.quizText}>Vad föredrar du?</Text>
+      <Text style={styles.bodyText}>Markera ett eller flera alternativ. Klicka direkt på Generera dryck om du gillar allt!</Text>
       <List>
         {items.map(item => {
           return renderItem(item);
         })}
       </List>
 
-      <TouchableOpacity style={globalStyles.startButton} onPress={() => navigation.navigate('Result', {category: selectedItems(items)})}>
-        <Text style={globalStyles.buttonText}>Gillar allt!</Text>
+      <TouchableOpacity style={globalStyles.startButton} onPress={() =>
+
+            navigation.navigate('Result', { category: selectedItems(items), allCategories: isEmpty(), pricelevel: navigation.getParam('pricelevel')})}>
+        <Text style={globalStyles.buttonText}>Generera dryck</Text>
       </TouchableOpacity>
 
-      <View style = {globalStyles.quizFooter}>
-        <Image source={require('../assets/navbar_5.png')}/>
+      <View style={globalStyles.quizFooter}>
+        <View style={globalStyles.navbarContainer}>
+          <Image style={globalStyles.navbarImg} source={require('../assets/navbar_5.png')} />
+        </View>
       </View>
 
     </View>
   )
 }
 
-
 const styles = StyleSheet.create({
   selected: {
     justifyContent: 'center',
-    marginVertical: 5,
+    //marginVertical: 5,
     marginHorizontal: 12,
     //padding: 10,
-    borderRadius: 12,
-    backgroundColor: 'pink',
+    borderRadius: 8,
+    borderColor: "#F2A478",
+    borderWidth: 1.5,
+    borderBottomWidth: 1.5,
+    backgroundColor: '#F2A478',
     //width: 380,
   },
   normal: {
     justifyContent: 'center',
-    marginVertical: 5,
+    //marginVertical: 5,
     marginHorizontal: 12,
     //padding: 10,
-    borderRadius: 12,
+    borderRadius: 8,
     //backgroundColor: 'coral',
-    borderColor: 'coral',
-    borderWidth: 1,
+    borderColor: '#F2A478',
+    borderWidth: 1.5,
+    borderBottomWidth: 1.5,
+
     //width: 380,
-  }
+  },
+  quizText: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 30,
+  },
+  bodyText: {
+    textAlign: "center",
+    fontSize: 16,
+    paddingLeft: 20,
+    paddingRight: 20,
+    //marginTop: 20,
+    marginBottom: 40,
+  },
 })
