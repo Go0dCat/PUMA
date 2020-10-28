@@ -10,7 +10,24 @@ export default function Quiz3({ navigation }) {
     { title: 'gar-inte-dit', key: '1' },
     { title: 'startar-dansgolvet', key: '4' },
     { title: 'trubaduren', key: '5' },
-  ])
+  ]);
+
+  const getItemArray = ()  => {
+    let isEmpty = false;
+
+    return isEmpty;
+  }
+
+  const [ansArr, setAnsArr] = useState(navigation.getParam('answerArr'));
+
+  const getAnswers = item => {
+    console.log('this is on quiz 3 :' + item.key);
+    ansArr.push({value: item.key, key: 3});
+    console.log('ansArr :' + JSON.stringify(ansArr));
+
+    return ansArr;
+  }
+
 
   return (
     <View style={globalStyles.quizContainer}>
@@ -22,7 +39,7 @@ export default function Quiz3({ navigation }) {
         data={partyPersons}
         renderItem={({ item }) => (
           // Fixa så att objektet både sparas och arrayen skickas med i onPress
-          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz4', item)}>
+          <TouchableOpacity style={globalStyles.quizAnswer} onPress={() => navigation.navigate('Quiz4', {answerArr: getAnswers(item)})}>
             <Image style={globalStyles.quizAnsImg} source={images.partyPersons[item.title]} />
           </TouchableOpacity>
         )}

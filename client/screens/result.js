@@ -13,6 +13,7 @@ export default function Result({ navigation }) {
 
   //console.log(JSON.stringify(navigation.state.params));
   //console.log(JSON.stringify(navigation.getParam('category')[0]));
+  const [ansArr, setAnsArr] = useState(navigation.getParam('answerArr'));
 
   //This is values for product
   var [product, setProduct] = useState('Default');
@@ -45,6 +46,7 @@ export default function Result({ navigation }) {
     //let lanIP = '172.23.131.115';
     //let lanIP = '192.168.1.3'; //SJ home IP
     let lanIP = '172.23.133.200';
+    console.log('ansArr in result:' + JSON.stringify(ansArr));
 
 
 
