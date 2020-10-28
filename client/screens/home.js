@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   startButton: { 
-    backgroundColor: "#36575C",
+    backgroundColor: "#DE664B",
     borderRadius: 30,
     marginHorizontal: 35,
     margin: 20,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   footerBtn: {
-    backgroundColor: "#F2A478",
+    backgroundColor: "#F5EFE5",
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 40,
