@@ -45,7 +45,7 @@ export default function Result({ navigation }) {
     //TODO set up to automatically get ip
     //let lanIP = '172.23.131.115';
     //let lanIP = '192.168.1.3'; //SJ home IP
-    let lanIP = '172.23.133.200';
+    let lanIP = '192.168.1.223';
     console.log('ansArr in result:' + JSON.stringify(ansArr));
 
 
